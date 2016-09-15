@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ASDF</title>
+
+    <link rel="stylesheet" href="./css/editor.main.css">
 </head>
 <body>
-<h1>Hello World!</h1>
-<!-- All of the Node.js APIs are available in this renderer process. -->
-We are using node <script>document.write(process.versions.node)</script>,
-Chromium <script>document.write(process.versions.chrome)</script>,
-and Electron <script>document.write(process.versions.electron)</script>.
+    <main>
+        <div class="left-pane">
+            <ul class="service-list">
+                <li class="service-list-item">
+                    <a href="">user-service</a>
+                    <input type="checkbox">
+                </li>
+                <li class="service-list-item">
+                    <a href="">user-service</a>
+                    <input type="checkbox">
+                </li>
+            </ul>
+        </div>
+        <div class="main-pane">
+            aSDasdasd
+        </div>
+    </main>
+    <script>
+        require('./renderer.js')
+    </script>
 </body>
-
-<script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-</script>
 </html>

@@ -1,0 +1,20 @@
+.service-list {
+    list-style: none;
+    padding: 0;
+}
+
+.service-list-item {
+    display: flex;
+    background-color: green;
+    margin-bottom: 1px;
+    padding: 3px 8px;
+}
+
+.service-list-item a {
+    flex: 1 0 0;
+    color: #ccc;
+    text-decoration: none;
+}
+.service-list-item input {
+    align-self: flex-end;
+}

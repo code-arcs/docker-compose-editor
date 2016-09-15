@@ -1,0 +1,29 @@
+@import "service-list.css";
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe WPC, Segoe UI, HelveticaNeue-Light, Ubuntu, Droid Sans, sans-serif;
+    font-size: 13px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex: 1 0 0;
+    height: 100%;
+}
+
+.left-pane {
+    background-color: #252526;
+    flex-basis: 170px;
+    flex-shrink: 0;
+}
+
+.main-pane {
+    background-color: #1e1e1e;
+    flex: 1 0 0;
+}
