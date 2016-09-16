@@ -1,19 +1,19 @@
-const {dialog} = require('electron');
+const {dialog, ipcMain} = require('electron');
 
 module.exports = {
-    label: 'File',
+    label: 'Hans Wurst',
     submenu: [
         {
             label: 'Open...',
-            click () {
-                const newVar = {
+            click (item, focusedWindow) {
+                const dialogOpts = {
                     properties: ['openFile'],
                     filters: [
-                        {name: 'Docker Compose', extensions: ['yml', 'yaml']},
                         {name: 'All files', extensions: ['*']}
                     ]
                 };
-                console.log(dialog.showOpenDialog(newVar));
+
+                focusedWindow.webContents.send('open-file', dialog.showOpenDialog(dialogOpts))
             }
         }
     ]
