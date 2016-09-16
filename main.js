@@ -1,6 +1,7 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const client = require('electron-connect').client;
 let mainWindow;
 
 function createWindow () {
@@ -9,6 +10,8 @@ function createWindow () {
     mainWindow.on('closed', function () {
         mainWindow = null
     });
+    // Connect to server process
+    client.create(mainWindow);
 }
 
 app.on('ready', createWindow);
@@ -22,7 +25,6 @@ app.on('activate', () => {
     if (mainWindow === null) {
         createWindow()
     }
-
 });
 
 require('./menu');

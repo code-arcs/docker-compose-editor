@@ -1,0 +1,19 @@
+postgres:
+  image: "postgres:9.4"
+  volumes_from:
+    - data
+  expose:
+    - 5432
+web:
+  build: .
+  ports:
+    - "3000:3000"
+  links:
+    - postgres
+  volumes:
+    - ./:/app
+data:
+  image: cogniteev/echo
+  command: echo 'Data Container for PostgreSQL'
+  volumes:
+    - /var/lib/postgresql/data

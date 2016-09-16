@@ -1,0 +1,160 @@
+version: '2'
+services:
+  apigateway:
+    image: apigateway
+    restart: "unless-stopped"
+    ports:
+      - "8087:8080"
+      - "8000:8000"
+    links:
+      - orientdb
+    environment:
+      NODE_ENV: production
+      SERVER_PORT: "8080"
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx128m"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: $EUREKA_CLIENT_SERVICEURL
+      SPRING_CLOUD_CONFIG_DISCOVERY_SERVICE_ID: "apigateway"
+      SPRING_RABBITMQ_HOST: $SPRING_RABBITMQ_HOST
+      SPRING_RABBITMQ_USERNAME: $SPRING_RABBITMQ_USERNAME
+      SPRING_RABBITMQ_PASSWORD: $SPRING_RABBITMQ_PASSWORD
+      middleware_url: $MIDDLEWARE_URL
+      middleware_apiUrl: $MIDDLEWARE_API_URL
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "$LOG_SERVER_ADDRESS"
+  orientdb:
+    image: orientdb:2.1.16
+    restart: "unless-stopped"
+    volumes:
+      - ./databases:/biccloud/orientdb
+    ports:
+      - "2424:2424"
+      - "2480:2480"
+    environment:
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx512m"
+      ORIENTDB_ROOT_PASSWORD: root
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "$LOG_SERVER_ADDRESS"
+  message-bus:
+    image: rabbitmq:3.6.1-management
+    restart: "unless-stopped"
+    environment:
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx512m"
+      CELERY_AMQP_TASK_RESULT_EXPIRES: 10800
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "$LOG_SERVER_ADDRESS"
+  eureka-service:
+    image: quay.io/gbtec/biccloud-eureka-service
+    restart: "unless-stopped"
+    links:
+      - message-bus
+    ports:
+      - "8080:8080"
+    environment:
+      SERVER_PORT: "8080"
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx1g"
+      SERVICE_8080_TAGS: proxytcp
+      SPRING_RABBITMQ_HOST: $SPRING_RABBITMQ_HOST
+      SPRING_RABBITMQ_USERNAME: $SPRING_RABBITMQ_USERNAME
+      SPRING_RABBITMQ_PASSWORD: $SPRING_RABBITMQ_PASSWORD
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "$LOG_SERVER_ADDRESS"
+#  config-service:
+#    image: quay.io/gbtec/biccloud-config-service
+#    environment:
+#      JAVA_TOOL_OPTIONS: "-Xmx512m"
+#      SERVER_PORT: "8080"
+#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: $EUREKA_CLIENT_SERVICEURL
+#      SPRING_RABBITMQ_HOST: $SPRING_RABBITMQ_HOST
+#      SPRING_RABBITMQ_USERNAME: $SPRING_RABBITMQ_USERNAME
+#      SPRING_RABBITMQ_PASSWORD: $SPRING_RABBITMQ_PASSWORD
+#      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+#    logging:
+#      driver: gelf
+#      options:
+#        gelf-address: "$LOG_SERVER_ADDRESS"
+  comment-service:
+    image: comment-service
+    restart: "unless-stopped"
+    ports:
+      - "8080"
+    environment:
+      SERVER_PORT: "8080"
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx128m"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: $EUREKA_CLIENT_SERVICEURL
+      SPRING_CLOUD_CONFIG_DISCOVERY_SERVICE_ID: "comment-service"
+      SPRING_RABBITMQ_HOST: $SPRING_RABBITMQ_HOST
+      SPRING_RABBITMQ_USERNAME: $SPRING_RABBITMQ_USERNAME
+      SPRING_RABBITMQ_PASSWORD: $SPRING_RABBITMQ_PASSWORD
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "$LOG_SERVER_ADDRESS"
+  export-service:
+    image: export-service
+    restart: "unless-stopped"
+    ports:
+      - "8080"
+    environment:
+      SERVER_PORT: "8080"
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx256m"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: $EUREKA_CLIENT_SERVICEURL
+      SPRING_CLOUD_CONFIG_DISCOVERY_SERVICE_ID: "export-service"
+      SPRING_RABBITMQ_HOST: $SPRING_RABBITMQ_HOST
+      SPRING_RABBITMQ_USERNAME: $SPRING_RABBITMQ_USERNAME
+      SPRING_RABBITMQ_PASSWORD: $SPRING_RABBITMQ_PASSWORD
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "$LOG_SERVER_ADDRESS"
+  favorite-service:
+    image: favorite-service
+    restart: "unless-stopped"
+    ports:
+      - "8080"
+    environment:
+      SERVER_PORT: "8080"
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx256m"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: $EUREKA_CLIENT_SERVICEURL
+      SPRING_CLOUD_CONFIG_DISCOVERY_SERVICE_ID: "favorite-service"
+      SPRING_RABBITMQ_HOST: $SPRING_RABBITMQ_HOST
+      SPRING_RABBITMQ_USERNAME: $SPRING_RABBITMQ_USERNAME
+      SPRING_RABBITMQ_PASSWORD: $SPRING_RABBITMQ_PASSWORD
+    logging:
+      driver: gelf
+      options:
+        gelf-address: "$LOG_SERVER_ADDRESS"
+  user-service:
+    image: user-service
+    restart: "unless-stopped"
+    ports:
+      - "8080"
+    environment:
+      SERVER_PORT: "8080"
+      LOGGING_LEVEL_ROOT: $LOGGING_LEVEL_ROOT
+      JAVA_TOOL_OPTIONS: "-Xmx256m"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: $EUREKA_CLIENT_SERVICEURL
+      SPRING_CLOUD_CONFIG_DISCOVERY_SERVICE_ID: "user-service"
+      SPRING_RABBITMQ_HOST: $SPRING_RABBITMQ_HOST
+      SPRING_RABBITMQ_USERNAME: $SPRING_RABBITMQ_USERNAME
+      SPRING_RABBITMQ_PASSWORD: $SPRING_RABBITMQ_PASSWORD
+      SPRING_DATASOURCE_URL: "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MVCC=TRUE"
+#    logging:
+#      driver: gelf
+#      options:
+#        gelf-address: "$LOG_SERVER_ADDRESS"
+#        gelf-tag: "user-service"
