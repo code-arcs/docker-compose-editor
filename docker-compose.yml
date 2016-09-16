@@ -1,0 +1,12 @@
+web:
+  extends:
+    file: common.yml
+    service: webapp
+  ports:
+    - "8000:8000"
+  links:
+    - db
+  environment:
+    - DEBUG=true
+db:
+  image: postgres

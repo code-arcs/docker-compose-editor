@@ -9,7 +9,7 @@ module.exports = {
                 const dialogOpts = {
                     properties: ['openFile'],
                     filters: [
-                        {name: 'All files', extensions: ['*']}
+                        {name: 'Docker-Compose-File', extensions: ['yml', 'yaml']}
                     ]
                 };
 

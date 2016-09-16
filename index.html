@@ -4,20 +4,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CodeArcs.de | Demo App</title>
+    <link rel="stylesheet" href="./css/editor.main.css">
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <div id="output"></div>
+    <main>
+        <div class="left-pane">
+            <ul class="service-list">
+            </ul>
+        </div>
+        <div class="main-pane">
+            <pre id="output"></pre>
+        </div>
+    </main>
     <script>
         const {ipcRenderer} = require('electron');
         const fs = require('fs');
+        const YAML = require('yamljs');
 
         ipcRenderer.on('open-file', (event, arg) => {
             if(arg && arg[0]) {
                 const content = fs.readFileSync(arg[0], 'utf8');
-                document.getElementById("output").innerText = content;
+                const json = YAML.parse(content);
+
+                const services = Object.keys(json);
+                const serviceLis = services.map(service => {
+                    const li = document.createElement('li');
+                    li.className = "service-list-item";
+
+                    const a = document.createElement('a');
+                    a.href = "#";
+                    a.innerText = service;
+
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+
+                    li.appendChild(a);
+                    li.appendChild(input);
+                    document.getElementsByClassName('service-list')[0].appendChild(li);
+                });
             }
-            console.log(event, arg);
         });
     </script>
 </body>
