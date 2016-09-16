@@ -1,11 +1,17 @@
+.service-list-pane {
+    flex: 1 0 0;
+    overflow-y: auto;
+}
+
 .service-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .service-list-item {
     display: flex;
-    background-color: red;
+    background-color: rgba(0,0,0,0.4);
     margin-bottom: 1px;
     padding: 3px 8px;
 }

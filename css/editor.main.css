@@ -1,14 +1,18 @@
-@import "service-list.css";
+@import "_service-list.css";
+@import "_statusbar.css";
 
 html, body {
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, Segoe WPC, Segoe UI, HelveticaNeue-Light, Ubuntu, Droid Sans, sans-serif;
     font-size: 13px;
+    color: #fff;
 }
 
 body {
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
@@ -21,6 +25,8 @@ main {
     background-color: #252526;
     flex-basis: 170px;
     flex-shrink: 0;
+    display:flex;
+    flex-direction: column;
 }
 
 .main-pane {

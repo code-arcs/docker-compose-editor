@@ -9,16 +9,22 @@
 <body>
     <main>
         <div class="left-pane">
-            <ul class="service-list">
-                <li class="service-list-item" style="text-align: center;">
-                    <a href="#">Add Service</a>
-                </li>
-            </ul>
+            <div class="service-list-pane">
+                <ul class="service-list">
+                    <li class="service-list-item" style="text-align: center;">
+                        <a href="#">Add Service</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="main-pane">
             <pre id="output"></pre>
         </div>
     </main>
+    <div class="statusbar">
+        <span>2 Services</span>
+        <span>3 Volumes</span>
+    </div>
     <script>require('./js/app')</script>
 
     <!-- build:remove -->

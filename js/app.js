@@ -1,17 +1,17 @@
 const {ipcRenderer} = require('electron');
 const fs = require('fs');
 const YAML = require('yamljs');
-const DockerComposeLoader = require('./compose.loader');
+const ComposeLoader = require('./compose.loader');
 
 ipcRenderer.on('open-file', (event, arg) => {
     if(arg && arg[0]) {
-        const dockerCompose = DockerComposeLoader.load(arg[0]);
+        const Compose = ComposeLoader.createFromFile(arg[0]);
         const content = fs.readFileSync(arg[0], 'utf8');
         const activeServices = YAML.parse(content);
 
 
-        renderServiceList(Object.keys(activeServices));
-        renderServiceList(Object.keys(inActiveServices), false);
+        renderServiceList(Compose.getActiveServices());
+        renderServiceList(Compose.getInactiveServices(), false);
     }
 });
 
