@@ -1,6 +1,12 @@
-a:
+apigateway-sidecar-service:
   image: postgres
-b:
+user-service:
   image: postgres
-#c:
-#  image: postgres
+tenant-service:
+render-service:
+method-service:
+domain-service:
+diagram-copy-service:
+proxy:
+eureka-service:
+postgres:

@@ -10,6 +10,9 @@
     <main>
         <div class="left-pane">
             <ul class="service-list">
+                <li class="service-list-item" style="text-align: center;">
+                    <a href="#">Add Service</a>
+                </li>
             </ul>
         </div>
         <div class="main-pane">
@@ -27,7 +30,7 @@
                 const activeServices = YAML.parse(content);
 
                 let commentedOutLines = content.match(/^\s*#.*/mg);
-                commentedOutLines = commentedOutLines.join('\n').replace(/^(\s*)#/mg, '$1');
+                commentedOutLines = (commentedOutLines || []).join('\n').replace(/^(\s*)#/mg, '$1');
                 const inActiveServices = YAML.parse(commentedOutLines);
                 renderServiceList(Object.keys(activeServices));
                 renderServiceList(Object.keys(inActiveServices), false);
@@ -48,7 +51,7 @@
                 input.checked = active;
 
                 li.appendChild(a);
-                li.appendChild(input);
+                //li.appendChild(input);
                 document.getElementsByClassName('service-list')[0].appendChild(li);
             });
         }

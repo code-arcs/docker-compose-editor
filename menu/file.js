@@ -15,6 +15,21 @@ module.exports = {
 
                 focusedWindow.webContents.send('open-file', dialog.showOpenDialog(dialogOpts))
             }
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: "Save"
+        },
+        {
+            label: "Save as..."
+        },
+        {
+            type: 'separator'
+        },
+        {
+            role: 'quit'
         }
     ]
 };
