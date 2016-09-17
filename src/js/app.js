@@ -9,7 +9,6 @@ ipcRenderer.on('open-file', (event, arg) => {
         const content = fs.readFileSync(arg[0], 'utf8');
         const activeServices = YAML.parse(content);
 
-
         renderServiceList(Compose.getActiveServices());
         renderServiceList(Compose.getInactiveServices(), false);
     }
