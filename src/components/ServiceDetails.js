@@ -1,16 +1,20 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
+import ImageInputField from "./ImageInputField"
 
 class ServiceDetails extends React.Component {
     render() {
         const service = this.getService();
         return (
-            <h1>{this.props.params.id}</h1>
+            <div>
+                <h1>{this.props.params.id}</h1>
+                <ImageInputField image={service.image}/>
+            </div>
         )
     }
 
     getService() {
-        return this.props.services[this.props.params.id];
+        return this.props.services[this.props.params.id] || {};
     }
 }
 

@@ -8,7 +8,6 @@ class LeftPanel extends React.Component {
         return (
             <div className="left-panel">
                 <div className="left-nav-panel">
-                    asd
                 </div>
                 <div className="service-list-panel">
                     <ServiceList services={this.props.services}/>
