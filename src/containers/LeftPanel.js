@@ -1,12 +1,29 @@
 import React from 'react';
 import ServiceList from '../components/ServiceList';
+import { connect } from 'react-redux'
+import * as Actions from '../actions'
 
-export default class LeftPanel extends React.Component {
+class LeftPanel extends React.Component {
     render() {
         return (
-            <div className="left-pane">
-                <ServiceList/>
+            <div className="left-panel">
+                <div className="left-nav-panel">
+                    asd
+                </div>
+                <div className="service-list-panel">
+                    <ServiceList services={this.props.services}/>
+                </div>
             </div>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        services: state.services
+    }
+}
+
+export default connect(
+    mapStateToProps
+)(LeftPanel)

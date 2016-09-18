@@ -1,19 +1,15 @@
-import React from 'react'
-import ServiceListItem from './ServiceListItem';
+import React, {PropTypes} from "react";
+import ServiceListItem from "./ServiceListItem";
+import {connect} from "react-redux";
 
-export default class ServiceList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {services: ['a', 'b']};
-    }
-
+class ServiceList extends React.Component {
     render() {
-        const services = this.state.services.map((s, idx) => {
-            console.log(idx);
+        let services = this.props.services.map((s, idx) => {
             return (
                 <ServiceListItem key={idx} service={s}/>
             )
         });
+
         return (
             <ul className="service-list">
                 {services}
@@ -21,3 +17,7 @@ export default class ServiceList extends React.Component {
         )
     }
 }
+ServiceList.propTypes = {
+    services: PropTypes.array.isRequired,
+};
+export default connect()(ServiceList)

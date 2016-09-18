@@ -6,7 +6,7 @@ import StatusBarPanel from './StatusBarPanel'
 class App extends React.Component {
     render() {
         return (
-            <div className="main-pane">
+            <div className="main-panel">
                 <main>
                     <LeftPanel/>
                     <MainPanel/>
@@ -16,5 +16,4 @@ class App extends React.Component {
         )
     }
 }
-
 export default App

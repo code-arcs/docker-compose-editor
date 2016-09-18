@@ -1,0 +1,15 @@
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main-panel > main {
+  display: flex;
+  flex: 1 0 0;
+}
+
+.main-panel {
+  background-color: #1e1e1e;
+  flex: 1 0 0;
+}

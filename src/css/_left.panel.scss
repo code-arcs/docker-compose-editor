@@ -1,0 +1,12 @@
+.left-panel {
+  background-color: #252526;
+  flex-basis: 170px;
+  flex-shrink: 0;
+  display:flex;
+  flex-direction: column;
+}
+
+.left-nav-panel {
+  display: flex;
+  flex-basis: 150px;
+}

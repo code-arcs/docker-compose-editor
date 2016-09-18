@@ -1,0 +1,2 @@
+export const ADD_SERVICE = 'ADD_SERVICE';
+export const SHOW_SERVICE_DETAILS = 'SHOW_SERVICE_DETAILS';

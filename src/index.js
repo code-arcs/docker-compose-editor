@@ -7,6 +7,8 @@ import reducer from './reducers';
 
 const store = createStore(reducer);
 render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById("dce-app-root")
-);
+)

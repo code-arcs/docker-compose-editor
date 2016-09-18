@@ -1,5 +1,7 @@
-@import "_service-list";
-@import "_statusbar";
+@import "service-list";
+@import "statusbar";
+@import "left.panel";
+@import "main.panel";
 
 html, body {
     height: 100%;
@@ -15,28 +17,4 @@ body {
 
 .dce-app {
     height: 100%;
-}
-
-.main-pane {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.main-pane > main {
-    display: flex;
-    flex: 1 0 0;
-}
-
-.left-pane {
-    background-color: #252526;
-    flex-basis: 170px;
-    flex-shrink: 0;
-    display:flex;
-    flex-direction: column;
-}
-
-.main-pane {
-    background-color: #1e1e1e;
-    flex: 1 0 0;
 }
