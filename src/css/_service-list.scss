@@ -1,26 +1,32 @@
 .service-list-panel {
-    flex: 1 0 0;
-    overflow-y: auto;
+  flex: 1 0 0;
+  overflow-y: auto;
 }
 
 .service-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .service-list-item {
-    display: flex;
-    background-color: rgba(0,0,0,0.4);
-    margin-bottom: 1px;
-    padding: 3px 8px;
-}
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 1px;
+  padding: 3px 8px;
 
-.service-list-item a {
+  &.inactive {
+    font-style: italic;
+    color: rgba(#ffffff, 0.2);
+  }
+
+  a {
     flex: 1 0 0;
-    color: #ccc;
+    color: inherit;
     text-decoration: none;
-}
-.service-list-item input {
+  }
+
+  input {
     align-self: flex-end;
+  }
 }

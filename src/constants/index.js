@@ -1,3 +1,4 @@
 export const ADD_SERVICE = 'ADD_SERVICE';
 export const SHOW_SERVICE_DETAILS = 'SHOW_SERVICE_DETAILS';
 export const OPEN_FILE = 'OPEN_FILE';
+export const SET_SERVICE_ACTIVE = 'SET_SERVICE_ACTIVE';

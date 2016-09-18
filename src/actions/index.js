@@ -21,5 +21,14 @@ export function openFile(yamlFile) {
         type: C.OPEN_FILE,
         payload: yamlFile
     }
+}
 
+export function setServiceActive(serviceName, active) {
+    return {
+        type: C.SET_SERVICE_ACTIVE,
+        payload: {
+            serviceName: serviceName,
+            active: active
+        }
+    }
 }

@@ -14,5 +14,14 @@
     border: none;
     border-bottom: 1px solid #fff;
   }
+
+  &.docker-image {
+    .separator {
+      padding: 0 4px;
+    }
+    .docker-image-tag {
+      width: 50px;
+    }
+  }
 }
 

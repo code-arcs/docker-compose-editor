@@ -5,8 +5,10 @@ import {connect} from "react-redux";
 class ServiceList extends React.Component {
     render() {
         let services = Object.keys(this.props.services).map((s, idx) => {
+            const service = this.props.services[s];
+            service._name = s;
             return (
-                <ServiceListItem key={idx} service={s}/>
+                <ServiceListItem key={idx} service={service}/>
             )
         });
 

@@ -1,6 +1,7 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import ImageInputField from "./ImageInputField"
+import RestartPolicyInputField from "./RestartPolicyInputField"
 
 class ServiceDetails extends React.Component {
     render() {
@@ -9,6 +10,7 @@ class ServiceDetails extends React.Component {
             <div>
                 <h1>{this.props.params.id}</h1>
                 <ImageInputField image={service.image}/>
+                <RestartPolicyInputField value={service.restart}/>
             </div>
         )
     }
