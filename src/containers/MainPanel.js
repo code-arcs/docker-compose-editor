@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default class MainPanel extends React.Component {
+export default class ContentPanel extends React.Component {
     render() {
         return (
-            <div className="main-panel">
+            <div className="content-panel">
                 {this.props.content}
             </div>
         )

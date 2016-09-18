@@ -1,6 +1,6 @@
 import React from "react";
 import LeftPanel from './LeftPanel'
-import MainPanel from './MainPanel'
+import ContentPanel from './MainPanel'
 import StatusBarPanel from './StatusBarPanel'
 
 class App extends React.Component {
@@ -9,7 +9,7 @@ class App extends React.Component {
             <div className="main-panel">
                 <main>
                     <LeftPanel/>
-                    <MainPanel content={this.props.content}/>
+                    <ContentPanel content={this.props.content}/>
                 </main>
                 <StatusBarPanel/>
             </div>
