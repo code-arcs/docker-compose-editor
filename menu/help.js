@@ -1,19 +1,14 @@
 const electron = require('electron');
+const app = electron.app;
+const translate = require('../i18n')(app.getLocale());
 
 module.exports = {
-    role: 'help',
+    label: translate('menu.help.label'),
     submenu: [
         {
-            label: 'Learn More',
+            label: translate('menu.help.info.label') + '...',
             click () {
                 electron.shell.openExternal('http://www.codearcs.de')
-            }
-        },
-        {
-            label: 'Toggle Developer Tools',
-            accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-            click (item, focusedWindow) {
-                if (focusedWindow) focusedWindow.webContents.toggleDevTools()
             }
         }
     ]

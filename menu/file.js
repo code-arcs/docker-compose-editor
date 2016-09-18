@@ -1,11 +1,15 @@
-const {dialog, ipcMain} = require('electron');
+const electron = require('electron');
+const dialog = electron.dialog;
+const ipcMain = electron.ipcMain;
+const app = electron.app;
+const translate = require('../i18n')(app.getLocale());
 const fs = require('fs');
 
 module.exports = {
-    label: 'File',
+    label: translate('menu.file.label'),
     submenu: [
         {
-            label: 'Open...',
+            label: translate('menu.file.open.label') + '...',
             accelerator: 'Ctrl+O',
             click (item, focusedWindow) {
                 const dialogOpts = {
@@ -25,10 +29,18 @@ module.exports = {
             type: 'separator'
         },
         {
-            label: "Save"
+            label: translate('menu.file.save.label'),
+            accelerator: 'Ctrl+S'
         },
         {
-            label: "Save as..."
+            label: translate('menu.file.save_as.label') + '...'
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: translate('menu.file.export.label') + '...',
+            accelerator: 'Ctrl+E'
         },
         {
             type: 'separator'

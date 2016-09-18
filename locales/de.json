@@ -1,0 +1,25 @@
+{
+  "menu": {
+    "file": {
+      "label": "Datei",
+      "open": {
+        "label": "Öffnen"
+      },
+      "save": {
+        "label": "Speichern"
+      },
+      "save_as": {
+        "label": "Speichern als"
+      },
+      "export": {
+        "label": "Exporieren"
+      }
+    },
+    "help": {
+      "label": "Hilfe",
+      "info": {
+        "label": "Info"
+      }
+    }
+  }
+}

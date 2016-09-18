@@ -5,6 +5,8 @@ const client = require('electron-connect').client;
 let mainWindow;
 
 function createWindow () {
+    require('./menu');
+
     mainWindow = new BrowserWindow({width: 800, height: 600});
     mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
     mainWindow.on('closed', function () {
@@ -28,4 +30,3 @@ app.on('activate', () => {
     }
 });
 
-require('./menu');
