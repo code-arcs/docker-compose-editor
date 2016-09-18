@@ -8,11 +8,11 @@ module.exports = class ComposeLoaderV2 {
     }
 
     getActiveServices() {
-        return Object.keys(this.yaml.services) || [];
+        return this.yaml.services;
     }
 
     getInactiveServices() {
-        return Object.keys(this.inactiveServices) || [];
+        return this.inactiveServices;
     }
 
     parsePlainContent(content) {

@@ -1,9 +1,19 @@
 import React from "react";
-import LeftPanel from './LeftPanel'
-import ContentPanel from './MainPanel'
-import StatusBarPanel from './StatusBarPanel'
+import {connect} from "react-redux";
+import {ipcRenderer} from "electron";
+import LeftPanel from "./LeftPanel";
+import ContentPanel from "./MainPanel";
+import StatusBarPanel from "./StatusBarPanel";
+import * as Actions from '../actions'
+
 
 class App extends React.Component {
+    componentDidMount() {
+        ipcRenderer.on('open-file', (event, filename) => {
+            this.props.dispatch(Actions.openFile(filename))
+        });
+    }
+
     render() {
         return (
             <div className="main-panel">
@@ -16,4 +26,4 @@ class App extends React.Component {
         )
     }
 }
-export default App
+export default connect()(App)

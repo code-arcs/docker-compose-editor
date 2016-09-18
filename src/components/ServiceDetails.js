@@ -5,12 +5,12 @@ class ServiceDetails extends React.Component {
     render() {
         const service = this.getService();
         return (
-            <h1>{service.name}</h1>
+            <h1>{this.props.params.id}</h1>
         )
     }
 
     getService() {
-        return this.props.services.find(s => s.name === this.props.params.id);
+        return this.props.services[this.props.params.id];
     }
 }
 

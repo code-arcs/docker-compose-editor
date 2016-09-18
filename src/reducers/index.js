@@ -1,13 +1,9 @@
 import lodash from 'lodash';
 import * as C from '../constants';
+import ComposeLoader from '../js/compose.loader';
 
 const initialState = {
-    services: [
-        {name: 'user-service'},
-        {name: 'tenant-service'},
-        {name: 'method-service'},
-        {name: 'eureka-service'},
-    ],
+    services: [],
     activeService: {}
 };
 
@@ -20,6 +16,11 @@ export default function (state = initialState, action) {
             return newstate;
         case C.SHOW_SERVICE_DETAILS:
             state.activeService = action.payload;
+            return newstate;
+        case C.OPEN_FILE:
+            console.log(action.payload);
+            const Compose = ComposeLoader.createFromFile(action.payload);
+            newstate.services = Compose.getActiveServices();
             return newstate;
         default:
             return newstate;

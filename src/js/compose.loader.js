@@ -3,7 +3,7 @@ const YAML = require('yamljs');
 const fs = require('fs');
 const ComposeLoaderV2 = require('./compose.loader.v2');
 
-module.exports = class ComposeLoader {
+export default class ComposeLoader {
     static createFromFile(file) {
         const content = fs.readFileSync(file, 'utf8');
         const yaml = YAML.parse(content);

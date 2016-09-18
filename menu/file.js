@@ -1,10 +1,12 @@
 const {dialog, ipcMain} = require('electron');
+const fs = require('fs');
 
 module.exports = {
-    label: 'Hans Wurst',
+    label: 'File',
     submenu: [
         {
             label: 'Open...',
+            accelerator: 'Ctrl+O',
             click (item, focusedWindow) {
                 const dialogOpts = {
                     properties: ['openFile'],
@@ -13,7 +15,10 @@ module.exports = {
                     ]
                 };
 
-                focusedWindow.webContents.send('open-file', dialog.showOpenDialog(dialogOpts))
+                const files = dialog.showOpenDialog(dialogOpts);
+                if(files && files.length === 1) {
+                    focusedWindow.webContents.send('open-file', files[0]);
+                }
             }
         },
         {
