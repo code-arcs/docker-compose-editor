@@ -3,18 +3,28 @@ import { connect } from 'react-redux'
 
 class StatusBarPanel extends React.Component {
     render() {
-        const serviceCount = Object.keys(this.props.services).length;
         return (
             <div className="statusbar">
-                <span>{serviceCount} Services</span>
+                <span>{this.props.activeServices} Services</span>
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
+    let inactiveServices = 0;
+    for(let service in state.app.services) {
+        if(state.app.services[service]._inactive === true) {
+            inactiveServices++;
+        }
+    }
+
+    const totalServices = Object.keys(state.app.services).length;
+    const activeServices = totalServices - inactiveServices;
+
     return {
-        services: state.app.services
+        activeServices: activeServices,
+        totalServices: totalServices
     }
 }
 
