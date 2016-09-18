@@ -10,6 +10,7 @@ function createWindow () {
     mainWindow.on('closed', function () {
         mainWindow = null
     });
+    mainWindow.webContents.openDevTools()
     // Connect to server process
     client.create(mainWindow);
 }

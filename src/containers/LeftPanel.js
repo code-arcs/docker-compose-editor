@@ -20,7 +20,7 @@ class LeftPanel extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        services: state.services
+        services: state.app.services
     }
 }
 

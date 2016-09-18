@@ -2,21 +2,26 @@ import lodash from 'lodash';
 import * as C from '../constants';
 
 const initialState = {
-    services: [1,2,3,4,6,7],
+    services: [
+        {name: 'user-service'},
+        {name: 'tenant-service'},
+        {name: 'method-service'},
+        {name: 'eureka-service'},
+    ],
     activeService: {}
 };
 
 export default function (state = initialState, action) {
-    const state = lodash.cloneDeep(state);
+    const newstate = lodash.cloneDeep(state);
 
     switch (action.type) {
         case C.ADD_SERVICE:
-            state.services.push(action.payload);
-            return state;
+            newstate.services.push(action.payload);
+            return newstate;
         case C.SHOW_SERVICE_DETAILS:
             state.activeService = action.payload;
-            return state;
+            return newstate;
         default:
-            return state;
+            return newstate;
     }
 }

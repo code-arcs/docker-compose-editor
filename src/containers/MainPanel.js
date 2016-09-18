@@ -4,7 +4,7 @@ export default class MainPanel extends React.Component {
     render() {
         return (
             <div className="main-panel">
-                Main
+                {this.props.content}
             </div>
         )
     }

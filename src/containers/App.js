@@ -9,7 +9,7 @@ class App extends React.Component {
             <div className="main-panel">
                 <main>
                     <LeftPanel/>
-                    <MainPanel/>
+                    <MainPanel content={this.props.content}/>
                 </main>
                 <StatusBarPanel/>
             </div>

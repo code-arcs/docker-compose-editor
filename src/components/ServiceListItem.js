@@ -1,10 +1,11 @@
 import React from 'react'
+import {Link} from 'react-router';
 
 export default class ServiceListItem extends React.Component {
     render() {
         return (
             <li className="service-list-item">
-                <a href="#">{this.props.service}</a>
+                <Link to={"/service/" + this.props.service.name}>{this.props.service.name}</Link>
             </li>
         )
     }
