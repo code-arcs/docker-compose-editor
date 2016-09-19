@@ -17,7 +17,10 @@ class PortsInputField extends React.Component {
 
         return (
             <div className="form-group docker-image">
-                <label htmlFor="">Environment variables</label>
+                <label htmlFor="">
+                    Environment variables
+                    <svg className="icon"><use xlinkHref="#plus" /></svg>
+                </label>
                 {envInputs}
             </div>
         )
