@@ -2,14 +2,14 @@ const electron = require('electron');
 const dialog = electron.dialog;
 const ipcMain = electron.ipcMain;
 const app = electron.app;
-const translate = require('../i18n')(app.getLocale());
+const _ = require('../i18n')(app.getLocale());
 const fs = require('fs');
 
 module.exports = {
-    label: translate('menu.file.label'),
+    label: _('menu.file.label'),
     submenu: [
         {
-            label: translate('menu.file.open.label') + '...',
+            label: _('menu.file.open.label') + '...',
             accelerator: 'Ctrl+O',
             click (item, focusedWindow) {
                 const dialogOpts = {
@@ -29,24 +29,27 @@ module.exports = {
             type: 'separator'
         },
         {
-            label: translate('menu.file.save.label'),
+            label: _('menu.file.save.label'),
             accelerator: 'Ctrl+S'
         },
         {
-            label: translate('menu.file.save_as.label') + '...'
+            label: _('menu.file.save_as.label') + '...',
+            accelerator: 'Ctrl+Shift+S'
         },
         {
             type: 'separator'
         },
         {
-            label: translate('menu.file.export.label') + '...',
+            label: _('menu.file.export.label') + '...',
             accelerator: 'Ctrl+E'
         },
         {
             type: 'separator'
         },
         {
-            role: 'quit'
+            label: _('menu.file.quit.label'),
+            role: 'quit',
+            accelerator: 'Ctrl+Q'
         }
     ]
 };
