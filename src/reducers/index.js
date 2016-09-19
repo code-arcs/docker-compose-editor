@@ -24,6 +24,9 @@ export default function (state = initialState, action) {
         case C.SET_SERVICE_ACTIVE:
             newstate.services[action.payload.serviceName]._inactive = action.payload.active;
             return newstate;
+        case C.UPDATE_SERVICE:
+            newstate.services[action.payload._name] = action.payload;
+            return newstate;
         default:
             return newstate;
     }

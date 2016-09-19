@@ -32,3 +32,10 @@ export function setServiceActive(serviceName, active) {
         }
     }
 }
+
+export function updateService(service) {
+    return {
+        type: C.UPDATE_SERVICE,
+        payload: service
+    }
+}

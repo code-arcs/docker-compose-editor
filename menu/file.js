@@ -1,8 +1,6 @@
 const electron = require('electron');
 const dialog = electron.dialog;
-const ipcMain = electron.ipcMain;
-const app = electron.app;
-const _ = require('../i18n')(app.getLocale());
+const _ = require('../i18n');
 const fs = require('fs');
 
 module.exports = {

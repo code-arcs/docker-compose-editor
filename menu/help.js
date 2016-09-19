@@ -1,6 +1,5 @@
 const electron = require('electron');
-const app = electron.app;
-const _ = require('../i18n')(app.getLocale());
+const _ = require('../i18n');
 
 module.exports = {
     label: _('menu.help.label'),

@@ -1,13 +1,12 @@
 .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
   label {
     display: block;
     font-weight: bold;
-  }
-
-  input {
-    color: #fff;
-    background-color: rgba(255,255,255,0.1);
-    padding: 5px;
+    padding: 6px 0;
   }
 
   input[type=text] {
@@ -16,12 +15,31 @@
   }
 
   &.docker-image {
+    display: flex;
     .separator {
-      padding: 0 4px;
+      padding: 6px 12px;
     }
     .docker-image-tag {
-      width: 50px;
+      width: 100px;
     }
   }
 }
 
+.form-control-wrapper {
+  flex-direction: row;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  outline: none;
+  color: #fff;
+  background-color: #343434;
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}

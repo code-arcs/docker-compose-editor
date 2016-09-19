@@ -1,4 +1,5 @@
 import React, {PropTypes} from "react";
+const _ = require('../../i18n');
 
 class ImageInputField extends React.Component {
     render() {
@@ -9,10 +10,12 @@ class ImageInputField extends React.Component {
 
         return (
             <div className="form-group docker-image">
-                <label htmlFor="exampleInputName2">Name</label>
-                <input type="text" className="form-control docker-image-name" value={imageName}/>
-                <span className="separator">:</span>
-                <input type="text" className="form-control docker-image-tag" value={imageTag}/>
+                <label htmlFor="exampleInputName2">{_('Image name')}</label>
+                <div className="form-control-wrapper">
+                    <input type="text" className="form-control docker-image-name" value={imageName}/>
+                    <span className="separator">:</span>
+                    <input type="text" className="form-control docker-image-tag" value={imageTag}/>
+                </div>
             </div>
         )
     }
