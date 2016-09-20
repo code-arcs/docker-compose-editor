@@ -1,25 +1,37 @@
 import React, {PropTypes} from "react";
-import Select from "react-select";
 
 class PortsInputField extends React.Component {
     render() {
         const values = this.props.values;
-        const envInputs = Object.keys(values).map(key => {
-            console.log(key);
-            return (
-                <div className="form-control-wrapper" key={key}>
-                    <input type="text" className="form-control" value={key}/>
-                    <span className="separator">:</span>
-                    <input type="text" className="form-control" value={values[key]}/>
-                </div>
-            );
-        });
+        let envInputs = [];
+        if(values) {
+            envInputs = Object.keys(values).map(key => {
+                return (
+                    <div className="form-control-wrapper" key={key}>
+                        <input type="text" className="form-control" value={key}/>
+                        <span className="separator">:</span>
+                        <input type="text" className="form-control" value={values[key]}/>
+                        <span className="separator">
+                        <a href="#">
+                            <svg className="icon icon-delete"><use xlinkHref="#delete"/></svg>
+                        </a>
+                    </span>
+                    </div>
+                );
+            });
+        } else {
+            envInputs = (
+                <div className="no-values-panel">No environment variables declared.</div>
+            )
+        }
 
         return (
-            <div className="form-group docker-image">
+            <div className="form-group">
                 <label htmlFor="">
                     Environment variables
-                    <svg className="icon"><use xlinkHref="#plus" /></svg>
+                    <svg className="icon">
+                        <use xlinkHref="#plus"/>
+                    </svg>
                 </label>
                 {envInputs}
             </div>

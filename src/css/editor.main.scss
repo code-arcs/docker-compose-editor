@@ -28,4 +28,21 @@ body {
     position: relative;
     top: 4px;
     left: 5px;
+
+    &.icon-delete {
+        flex-basis: 64px;
+
+        use path {
+            fill: red;
+        }
+    }
+}
+
+a .icon-delete {
+    transition-property: translate;
+    transition-duration: 100ms;
+
+    &:hover {
+        transform: rotate(90deg);
+    }
 }

@@ -11,7 +11,6 @@ class ServiceListItem extends React.Component {
     render() {
         const clazzName = ["service-list-item"];
         if(this.props.service._inactive) {
-            console.log(this.props.service._inactive);
             clazzName.push("inactive")
         }
 

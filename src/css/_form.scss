@@ -3,10 +3,18 @@
   flex-direction: column;
   margin-bottom: 20px;
 
+  .no-values-panel {
+    padding: 14px 0;
+    text-align: center;
+    border-radius: 7px;
+    background-color: #252526;
+  }
+
   label {
     display: block;
     font-weight: bold;
     padding: 6px 0;
+    font-size: 1.1em;
   }
 
   input[type=text] {
@@ -14,11 +22,13 @@
     border-bottom: 1px solid #fff;
   }
 
+  .separator {
+    padding: 6px 12px;
+  }
+
   &.docker-image {
     display: flex;
-    .separator {
-      padding: 6px 12px;
-    }
+
     .docker-image-tag {
       width: 100px;
     }

@@ -9,13 +9,12 @@ import EnvInputField from "./EnvInputField"
 class ServiceDetails extends React.Component {
     render() {
         const service = this.getService();
-        console.log(service);
         return (
             <div>
                 <h1>{this.props.params.id}</h1>
                 <ImageInputField image={service.image}/>
                 <RestartPolicyInputField value={service.restart} onChange={this.onChange.bind(this, 'restart')}/>
-                <PortsInputField values={service.ports}/>
+                <PortsInputField values={service.ports} onChange={this.onChange.bind(this, 'ports')}/>
                 <EnvInputField values={service.environment}/>
             </div>
         )
@@ -23,10 +22,17 @@ class ServiceDetails extends React.Component {
 
     onChange(what, valueObject) {
         const service = this.getService();
-        console.log(this, arguments, service);
         if(what === 'restart') {
             service.restart = valueObject.value;
-            Actions.updateService(service);
+            this.props.dispatch(Actions.updateService(service));
+        }
+        if(what === 'ports') {
+            if(!valueObject.externalPort && !valueObject.internalPort) {
+                service.ports = service.ports.splice(valueObject.index, 1);
+            } else {
+                service.ports[valueObject.index] = valueObject.externalPort ? [valueObject.externalPort, valueObject.internalPort].join(':') : valueObject.internalPort;
+            }
+            this.props.dispatch(Actions.updateService(service));
         }
     }
 
