@@ -5,12 +5,13 @@ import LeftPanel from "./LeftPanel";
 import ContentPanel from "./MainPanel";
 import StatusBarPanel from "./StatusBarPanel";
 import * as Actions from '../actions'
-
+import * as pkg from '../../package.json'
 
 class App extends React.Component {
     componentDidMount() {
         ipcRenderer.on('open-file', (event, filename) => {
-            this.props.dispatch(Actions.openFile(filename))
+            this.props.dispatch(Actions.openFile(filename));
+            document.title = pkg.productName;
         });
     }
 
@@ -26,4 +27,5 @@ class App extends React.Component {
         )
     }
 }
+
 export default connect()(App)

@@ -2,6 +2,7 @@ const electron = require('electron');
 const dialog = electron.dialog;
 const _ = require('../i18n');
 const fs = require('fs');
+const path = require('path');
 
 module.exports = {
     label: _('menu.file.label'),
@@ -12,6 +13,7 @@ module.exports = {
             click (item, focusedWindow) {
                 const dialogOpts = {
                     properties: ['openFile'],
+                    defaultPath: path.resolve(__dirname + '/..'),
                     filters: [
                         {name: 'Docker-Compose-File', extensions: ['yml', 'yaml']}
                     ]

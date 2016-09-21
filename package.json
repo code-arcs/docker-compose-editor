@@ -1,5 +1,6 @@
 {
-  "name": "your-app",
+  "name": "de.codearcs.docker-compose-editor",
+  "productName": "Docker Compose Editor",
   "version": "0.1.0",
   "main": "main.js",
   "author": "info@codearcs.de",

@@ -5,34 +5,36 @@ import ImageInputField from "./ImageInputField"
 import RestartPolicyInputField from "./RestartPolicyInputField"
 import PortsInputField from "./PortsInputField"
 import EnvInputField from "./EnvInputField"
+import * as pkg from '../../package.json'
 
 class ServiceDetails extends React.Component {
     render() {
-        const service = this.getService();
+        this.service = this.getService();
+        document.title = `${pkg.productName} [${this.service._name}]`;
+
         return (
             <div>
                 <h1>{this.props.params.id}</h1>
-                <ImageInputField image={service.image}/>
-                <RestartPolicyInputField value={service.restart} onChange={this.onChange.bind(this, 'restart')}/>
-                <PortsInputField values={service.ports} onChange={this.onChange.bind(this, 'ports')}/>
-                <EnvInputField values={service.environment}/>
+                <ImageInputField image={this.service.image}/>
+                <RestartPolicyInputField value={this.service.restart} onChange={this.onChange.bind(this, 'restart')}/>
+                <PortsInputField values={this.service.ports} onChange={this.onChange.bind(this, 'ports')}/>
+                <EnvInputField values={this.service.environment}/>
             </div>
         )
     }
 
     onChange(what, valueObject) {
-        const service = this.getService();
         if(what === 'restart') {
-            service.restart = valueObject.value;
-            this.props.dispatch(Actions.updateService(service));
+            this.service.restart = valueObject.value;
+            this.props.dispatch(Actions.updateService(this.service));
         }
         if(what === 'ports') {
             if(!valueObject.externalPort && !valueObject.internalPort) {
-                service.ports = service.ports.splice(valueObject.index, 1);
+                this.service.ports = this.service.ports.splice(valueObject.index, 1);
             } else {
-                service.ports[valueObject.index] = valueObject.externalPort ? [valueObject.externalPort, valueObject.internalPort].join(':') : valueObject.internalPort;
+                this.service.ports[valueObject.index] = valueObject.externalPort ? [valueObject.externalPort, valueObject.internalPort].join(':') : valueObject.internalPort;
             }
-            this.props.dispatch(Actions.updateService(service));
+            this.props.dispatch(Actions.updateService(this.service));
         }
     }
 

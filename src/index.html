@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Docker Compose Editor</title>
+    <title>require('../package.json').productName</title>
     <link rel="stylesheet" href="./css/editor.main.css">
 </head>
 <body>
@@ -19,7 +19,10 @@
     <div class="dce-app" id="dce-app-root"></div>
 
     <script>
-        var electron = require('electron');
+        const electron = require('electron');
+        const pkg = require('../package.json');
+        document.title = pkg.productName;
+
         electron.remote.getCurrentWindow().removeAllListeners();
     </script>
     <script>require('./index')</script>
