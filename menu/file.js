@@ -40,7 +40,10 @@ module.exports = {
         },
         {
             label: _('menu.file.export.label') + '...',
-            accelerator: 'Ctrl+E'
+            accelerator: 'Ctrl+E',
+            click(item, focusedWindow) {
+                focusedWindow.webContents.send('export');
+            }
         },
         {
             type: 'separator'

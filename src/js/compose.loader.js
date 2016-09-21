@@ -15,6 +15,10 @@ export default class ComposeLoader {
         throw "Unrecognized Docker Compose file.";
     }
 
+    static toYaml(obj) {
+        return YAML.stringify(obj);
+    }
+
     static _isVersion(yaml, version) {
         return yaml.version && yaml.version === version || yaml.services;
     }
