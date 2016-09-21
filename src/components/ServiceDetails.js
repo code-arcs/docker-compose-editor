@@ -1,11 +1,11 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import * as Actions from "../actions";
-import ImageInputField from "./ImageInputField"
-import RestartPolicyInputField from "./RestartPolicyInputField"
-import PortsInputField from "./PortsInputField"
-import EnvInputField from "./EnvInputField"
-import * as pkg from '../../package.json'
+import ImageInputField from "./ImageInputField";
+import RestartPolicyInputField from "./RestartPolicyInputField";
+import PortsInputField from "./PortsInputField";
+import EnvInputField from "./EnvInputField";
+import * as pkg from "../../package.json";
 
 class ServiceDetails extends React.Component {
     render() {
@@ -24,17 +24,28 @@ class ServiceDetails extends React.Component {
     }
 
     onChange(what, valueObject) {
-        if(what === 'restart') {
+        if (what === 'restart') {
             this.service.restart = valueObject.value;
             this.props.dispatch(Actions.updateService(this.service));
         }
-        if(what === 'ports') {
-            if(!valueObject.externalPort && !valueObject.internalPort) {
-                this.service.ports = this.service.ports.splice(valueObject.index, 1);
-            } else {
-                this.service.ports[valueObject.index] = valueObject.externalPort ? [valueObject.externalPort, valueObject.internalPort].join(':') : valueObject.internalPort;
+        if (what === 'ports') {
+            if (valueObject.action === 'delete') {
+                this.service.ports[valueObject.index] = undefined;
+                this.service.ports = this.service.ports.filter(p => p !== undefined);
             }
+            else if (valueObject.action === 'update') {
+                this.service.ports[valueObject.index] = formattedPortString(valueObject);
+            }
+            else if (valueObject.action === 'insert') {
+                this.service.ports = this.service.ports || [];
+                this.service.ports.push(':');
+            }
+
             this.props.dispatch(Actions.updateService(this.service));
+        }
+
+        function formattedPortString(valueObject) {
+            return Number.isInteger(+valueObject.externalPort) ? [+valueObject.externalPort, +valueObject.internalPort].join(':') : +valueObject.internalPort;
         }
     }
 

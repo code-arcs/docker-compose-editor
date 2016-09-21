@@ -13,7 +13,6 @@ module.exports = {
             click (item, focusedWindow) {
                 const dialogOpts = {
                     properties: ['openFile'],
-                    defaultPath: path.resolve(__dirname + '/..'),
                     filters: [
                         {name: 'Docker-Compose-File', extensions: ['yml', 'yaml']}
                     ]

@@ -4,7 +4,7 @@ class PortsInputField extends React.Component {
     render() {
         const values = this.props.values;
         let envInputs = [];
-        if(values) {
+        if(Array.isArray(values) && values.length > 0) {
             envInputs = Object.keys(values).map(key => {
                 return (
                     <div className="form-control-wrapper" key={key}>

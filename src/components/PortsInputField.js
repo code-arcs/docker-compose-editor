@@ -1,9 +1,17 @@
 import React, {PropTypes} from "react";
 
 class PortsInputField extends React.Component {
+    addPortMapping() {
+        this.props.onChange({
+            action: 'insert',
+            externalPort: 0,
+            internalPort: 0
+        });
+    }
+
     render() {
         let portsInputs;
-        if(this.props.values) {
+        if (Array.isArray(this.props.values) && this.props.values.length > 0) {
             portsInputs = this.props.values.map((ports, idx) => {
                 const split = ports.split(':');
                 let externalPort, internalPort;
@@ -28,10 +36,14 @@ class PortsInputField extends React.Component {
         }
 
         return (
-            <div className="form-group">
+            <div className="form-group ports-group">
                 <label htmlFor="">
                     Expose Ports
-                    <svg className="icon"><use xlinkHref="#plus"/></svg>
+                    <a onClick={this.addPortMapping.bind(this)}>
+                        <svg className="icon">
+                            <use xlinkHref="#plus"/>
+                        </svg>
+                    </a>
                 </label>
                 {portsInputs}
             </div>
@@ -41,22 +53,15 @@ class PortsInputField extends React.Component {
 export default PortsInputField;
 
 class ExternalInternalPortInputField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            index: props.index,
-            externalPort: props.externalPort,
-            internalPort: props.internalPort
-        }
-    }
-
     handleDelete() {
-        this.props.onChange({index: this.props.index});
+        this.props.onChange({index: this.props.index, action: 'delete'});
     }
 
     onChange(portType, event) {
-        this.state[portType] = event.target.value;
-        this.props.onChange(this.state);
+        const newProps = Object.assign({}, this.props);
+        newProps.action = 'update';
+        newProps[portType] = event.target.value;
+        this.props.onChange(newProps);
     }
 
     render() {
