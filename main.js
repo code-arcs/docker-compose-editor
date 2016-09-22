@@ -1,3 +1,4 @@
+const fs = require('fs');
 const electron = require('electron');
 const app = electron.app;
 const dialog = electron.dialog;
@@ -20,6 +21,7 @@ function createWindow () {
     client.create(mainWindow);
 
     ipcMain.on('export-data', function(event, yamlContent) {
+        console.log(yamlContent);
         const dialogOpts = {
             filters: [
                 {name: 'Docker-Compose-File', extensions: ['yml', 'yaml']}

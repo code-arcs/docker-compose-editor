@@ -20,6 +20,8 @@ export default function (state = initialState, action) {
         case C.OPEN_FILE:
             const Compose = ComposeLoader.createFromFile(action.payload);
             newstate.services = Compose.getActiveServices();
+            newstate.version = Compose.getVersion();
+            console.log(newstate);
             return newstate;
         case C.SET_SERVICE_ACTIVE:
             newstate.services[action.payload.serviceName]._inactive = action.payload.active;

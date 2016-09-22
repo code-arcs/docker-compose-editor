@@ -16,7 +16,7 @@ class App extends React.Component {
         });
 
         ipcRenderer.on('export', () => {
-            ipcRenderer.send('export-data', ComposeLoader.toYaml(this.props.services));
+            ipcRenderer.send('export-data', ComposeLoader.toYaml(this.props));
         });
     }
 
@@ -34,8 +34,6 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        services: state.app.services
-    }
+    return state.app;
 }
 export default connect(mapStateToProps)(App)

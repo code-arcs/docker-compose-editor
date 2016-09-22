@@ -15,8 +15,14 @@ export default class ComposeLoader {
         throw "Unrecognized Docker Compose file.";
     }
 
-    static toYaml(obj) {
-        return YAML.stringify(obj);
+    static toYaml(state) {
+        console.log(state)
+        if(state.version === '2') {
+            return YAML.stringify({
+                version: '2',
+                services: state.services
+            }, 10);
+        }
     }
 
     static _isVersion(yaml, version) {

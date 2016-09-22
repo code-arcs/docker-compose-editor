@@ -7,6 +7,10 @@ module.exports = class ComposeLoaderV2 {
         this.parsePlainContent(content);
     }
 
+    getVersion() {
+        return this.yaml.version;
+    }
+
     getActiveServices() {
         return this.yaml.services;
     }
