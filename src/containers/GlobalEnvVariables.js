@@ -1,6 +1,7 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import EnvInputField from "../components/EnvInputField";
+import * as pkg from "../../package.json";
 
 class GlobalEnvVariables extends React.Component {
     onChange(action) {
@@ -8,6 +9,7 @@ class GlobalEnvVariables extends React.Component {
     }
 
     render() {
+        document.title = `${pkg.productName}`;
         return (
             <div>
                 <h1>Global Environment Variables</h1>

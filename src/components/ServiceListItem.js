@@ -5,7 +5,7 @@ import * as Actions from "../actions";
 
 class ServiceListItem extends React.Component {
     handleChange(event) {
-        this.props.dispatch(Actions.setServiceActive(this.props.service._name, event.target.checked));
+        this.props.dispatch(Actions.setServiceActive(this.props.service._name, !event.target.checked));
     }
 
     render() {
@@ -17,7 +17,7 @@ class ServiceListItem extends React.Component {
         return (
             <li className={clazzName.join(' ')}>
                 <Link to={"/service/" + this.props.service._name}>{this.props.service._name}</Link>
-                <input checked={this.props.service._inactive} type="checkbox" onClick={this.handleChange.bind(this)}/>
+                <input checked={!this.props.service._inactive} type="checkbox" onClick={this.handleChange.bind(this)}/>
             </li>
         )
     }

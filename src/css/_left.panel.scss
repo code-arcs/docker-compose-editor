@@ -1,6 +1,6 @@
 .left-panel {
   background-color: #252526;
-  flex-basis: 170px;
+  flex-basis: 225px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -8,5 +8,11 @@
 
 .left-nav-panel {
   display: flex;
-  flex-basis: 75px;
+  width: 100%;
+}
+
+.left-panel-title {
+  padding: 3px 8px;
+  margin: 0;
+  font-size: 1em;
 }
