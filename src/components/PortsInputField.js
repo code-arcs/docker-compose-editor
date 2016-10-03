@@ -16,7 +16,7 @@ class PortsInputField extends React.Component {
         };
 
         this.props.values.forEach((val, idx) => {
-            if(idx != value.index) {
+            if (idx != value.index) {
                 const __ret = this.splitPortString(val);
                 ports.externalPort.push(__ret.externalPort);
                 ports.internalPort.push(__ret.internalPort);
@@ -109,7 +109,7 @@ class ExternalInternalPortInputField extends React.Component {
         newProps[portType] = event.target.value;
 
         var validate = this.props.validate(newProps, event.target.value);
-        if(!validate.hasErrors()) {
+        if (!validate.hasErrors()) {
             this.setState({
                 internalPortInUse: validate.internalPortInUse,
                 externalPortInUse: validate.externalPortInUse
@@ -126,10 +126,12 @@ class ExternalInternalPortInputField extends React.Component {
     render() {
         return (
             <div className="form-control-wrapper">
-                <input type="number" className={"form-control " + (this.state.externalPortInUse ? 'error' : '')} value={this.props.externalPort}
+                <input type="number" className={"form-control " + (this.state.externalPortInUse ? 'error' : '')}
+                       value={this.props.externalPort}
                        min="1" max="65535" onChange={this.onChange.bind(this, "externalPort")}/>
                 <span className="separator">:</span>
-                <input type="number" className={"form-control " + (this.state.internalPortInUse ? 'error' : '')} value={this.props.internalPort}
+                <input type="number" className={"form-control " + (this.state.internalPortInUse ? 'error' : '')}
+                       value={this.props.internalPort}
                        min="1" max="65535" onChange={this.onChange.bind(this, "internalPort")}/>
                 <span className="separator">
                     <a onClick={this.handleDelete.bind(this)}>

@@ -1,5 +1,5 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import {connect} from "react-redux";
 
 class StatusBarPanel extends React.Component {
     render() {
@@ -13,8 +13,8 @@ class StatusBarPanel extends React.Component {
 
 function mapStateToProps(state) {
     let inactiveServices = 0;
-    for(let service in state.app.services) {
-        if(state.app.services[service]._inactive === true) {
+    for (let service in state.app.services) {
+        if (state.app.services[service]._inactive === true) {
             inactiveServices++;
         }
     }

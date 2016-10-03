@@ -49,7 +49,6 @@ reducerRegistry.addReducer(C.UPDATE_ENV_VARIABLE, (state, action) => {
     return state;
 });
 
-
 reducerRegistry.addReducer(C.DELETE_ENV_VARIABLE, (state, action) => {
     delete state.envVars[action.payload.key];
     return state;

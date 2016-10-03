@@ -7,42 +7,42 @@
 @import "../../node_modules/react-select/dist/react-select.css";
 
 html, body {
-    height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe WPC, Segoe UI, HelveticaNeue-Light, Ubuntu, Droid Sans, sans-serif;
-    font-size: 13px;
-    color: #ffffff;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe WPC, Segoe UI, HelveticaNeue-Light, Ubuntu, Droid Sans, sans-serif;
+  font-size: 13px;
+  color: #ffffff;
 }
 
 body {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .dce-app {
-    height: 100%;
+  height: 100%;
 }
 
 .icon {
-    width: 16px;
-    height: 16px;
-    position: relative;
-    top: 4px;
-    left: 5px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 4px;
+  left: 5px;
 
-    &.icon-delete {
-        flex-basis: 64px;
+  &.icon-delete {
+    flex-basis: 64px;
 
-        use path {
-            fill: red;
-        }
+    use path {
+      fill: red;
     }
+  }
 }
 
 a .icon-delete {
-    transition-property: translate;
-    transition-duration: 100ms;
+  transition-property: translate;
+  transition-duration: 100ms;
 
-    &:hover {
-        transform: rotate(90deg);
-    }
+  &:hover {
+    transform: rotate(90deg);
+  }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router";
 import {connect} from "react-redux";
-import * as Actions from '../actions'
+import * as Actions from "../actions";
 
 class ServiceListItem extends React.Component {
     handleChange(event) {
@@ -10,7 +10,7 @@ class ServiceListItem extends React.Component {
 
     render() {
         const clazzName = ["service-list-item"];
-        if(this.props.service._inactive) {
+        if (this.props.service._inactive) {
             clazzName.push("inactive")
         }
 

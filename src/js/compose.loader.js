@@ -8,7 +8,7 @@ export default class ComposeLoader {
         const content = fs.readFileSync(file, 'utf8');
         const yaml = YAML.parse(content);
 
-        if(ComposeLoader._isVersion(yaml, '2')) {
+        if (ComposeLoader._isVersion(yaml, '2')) {
             return new ComposeLoaderV2(yaml, content);
         }
 
@@ -17,7 +17,7 @@ export default class ComposeLoader {
 
     static toYaml(state) {
         console.log(state)
-        if(state.version === '2') {
+        if (state.version === '2') {
             return YAML.stringify({
                 version: '2',
                 services: state.services

@@ -1,5 +1,4 @@
 import React, {PropTypes} from "react";
-import Select from "react-select";
 
 class RestartPolicyInputField extends React.Component {
     render() {

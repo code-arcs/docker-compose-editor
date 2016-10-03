@@ -2,7 +2,7 @@ import React from "react";
 import {render} from "react-dom";
 import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
-import {Router, Route, hashHistory, IndexRoute} from "react-router";
+import {Router, Route, hashHistory} from "react-router";
 import {syncHistoryWithStore, routerReducer} from "react-router-redux";
 import reducers from "./reducers";
 import App from "./containers/App";

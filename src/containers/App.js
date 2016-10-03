@@ -5,8 +5,8 @@ import LeftPanel from "./LeftPanel";
 import ContentPanel from "./MainPanel";
 import StatusBarPanel from "./StatusBarPanel";
 import ComposeLoader from "../js/compose.loader";
-import * as Actions from '../actions'
-import * as pkg from '../../package.json'
+import * as Actions from "../actions";
+import * as pkg from "../../package.json";
 
 class App extends React.Component {
     componentDidMount() {
