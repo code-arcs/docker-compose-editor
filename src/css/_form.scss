@@ -52,4 +52,9 @@
   line-height: 1.42857143;
   border: none;
   border-bottom: 1px solid #ccc;
+
+  &.error {
+    background-color: rgba(#a94442, 0.2);
+    border-color: #a94442;
+  }
 }
