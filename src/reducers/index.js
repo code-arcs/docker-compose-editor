@@ -3,7 +3,7 @@ import * as C from '../constants';
 import ComposeLoader from '../js/compose.loader';
 
 const initialState = {
-    envVars: [],
+    envVars: {A:123},
     services: [],
     activeService: {}
 };
@@ -29,6 +29,16 @@ export default function (state = initialState, action) {
             return newstate;
         case C.UPDATE_SERVICE:
             newstate.services[action.payload._name] = action.payload;
+            return newstate;
+        case C.DELETE_ENV_VARIABLE:
+            delete newstate.envVars[action.payload.key];
+            return newstate;
+        case C.ADD_ENV_VARIABLE:
+            newstate.envVars[''] = '';
+            return newstate;
+        case C.UPDATE_ENV_VARIABLE:
+            delete newstate.envVars[action.oldKey];
+            newstate.envVars[action.payload.key] = action.payload.env;
             return newstate;
         default:
             return newstate;

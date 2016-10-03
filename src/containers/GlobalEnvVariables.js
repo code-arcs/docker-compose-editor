@@ -1,8 +1,12 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
-import EnvInputField from "./EnvInputField";
+import EnvInputField from "../components/EnvInputField";
 
 class GlobalEnvVariables extends React.Component {
+    onChange(action) {
+        this.props.dispatch(action);
+    }
+
     render() {
         return (
             <div>
@@ -11,7 +15,7 @@ class GlobalEnvVariables extends React.Component {
                     Define environment variables here which you can reuse in services later. E.g. when multiple services
                     share common environment variables, you can change them here for all services at once.
                 </p>
-                <EnvInputField values={this.envVars}/>
+                <EnvInputField values={this.props.envVars} onChange={this.onChange.bind(this)}/>
             </div>
         )
     }

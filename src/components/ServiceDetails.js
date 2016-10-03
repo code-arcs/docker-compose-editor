@@ -11,7 +11,6 @@ class ServiceDetails extends React.Component {
     render() {
         this.service = this.getService();
         document.title = `${pkg.productName} [${this.service._name}]`;
-
         return (
             <div>
                 <h1>{this.props.params.id}</h1>

@@ -39,3 +39,26 @@ export function updateService(service) {
         payload: service
     }
 }
+
+export function updateEnvVariable(oldKey, payload) {
+    return {
+        type: C.UPDATE_ENV_VARIABLE,
+        oldKey: oldKey,
+        payload: payload
+    }
+}
+
+export function addEnvVariable() {
+    return {
+        type: C.ADD_ENV_VARIABLE
+    }
+}
+
+export function deleteEnvVariable(key) {
+    return {
+        type: C.DELETE_ENV_VARIABLE,
+        payload: {
+            key: key
+        }
+    }
+}
