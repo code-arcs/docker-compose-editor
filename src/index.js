@@ -7,6 +7,7 @@ import {syncHistoryWithStore, routerReducer} from "react-router-redux";
 import reducers from "./reducers";
 import App from "./containers/App";
 import ServiceDetails from "./components/ServiceDetails";
+import GlobalEnvVariables from "./components/GlobalEnvVariables";
 
 const store = createStore(
     combineReducers({
@@ -21,6 +22,7 @@ render(
         <Router history={history}>
             <Route path="/" component={App}>
                 <Route path="service/:id" components={{content: ServiceDetails}}/>
+                <Route path="env" components={{content: GlobalEnvVariables}}/>
                 <Route path="*" component={App}/>
             </Route>
         </Router>

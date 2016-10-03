@@ -3,6 +3,7 @@ import * as C from '../constants';
 import ComposeLoader from '../js/compose.loader';
 
 const initialState = {
+    envVars: [],
     services: [],
     activeService: {}
 };
