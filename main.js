@@ -11,7 +11,7 @@ let mainWindow;
 function createWindow () {
     require('./menu');
 
-    mainWindow = new BrowserWindow({width: 1024, height: 768});
+    mainWindow = new BrowserWindow({width: 1024, height: 768, icon: __dirname + '/icon.png'});
     mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
     mainWindow.on('closed', function () {
         mainWindow = null
