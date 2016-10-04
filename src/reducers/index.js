@@ -4,7 +4,7 @@ import ComposeLoader from "../js/compose.loader";
 import {ReducerRegistry} from "./reducerRegistry";
 
 const initialState = {
-    envVars: {},
+    envVars: [],
     services: [],
     activeService: {}
 };
@@ -44,17 +44,32 @@ reducerRegistry.addReducer(C.OPEN_FILE, (state, action) => {
 });
 
 reducerRegistry.addReducer(C.UPDATE_ENV_VARIABLE, (state, action) => {
-    delete state.envVars[action.oldKey];
-    state.envVars[action.payload.key] = action.payload.env;
+    if(action.payload.serviceName) {
+        const service = state.services[action.payload.serviceName];
+        service.environment[action.payload.idx] = {
+            key: action.payload.key,
+            value: action.payload.value,
+        };
+    } else {
+        state.envVars[action.payload.idx] = {
+            key: action.payload.key,
+            value: action.payload.value,
+        };
+    }
     return state;
 });
 
 reducerRegistry.addReducer(C.DELETE_ENV_VARIABLE, (state, action) => {
-    delete state.envVars[action.payload.key];
+    if(action.payload.serviceName) {
+        const service = state.services[action.payload.serviceName];
+        service.environment = service.environment.filter((val, idx) => action.payload.idx !== idx);
+    } else {
+        state.envVars = state.envVars.filter((val, idx) => action.payload.idx !== idx);
+    }
     return state;
 });
 
 reducerRegistry.addReducer(C.ADD_ENV_VARIABLE, (state, action) => {
-    state.envVars[''] = '';
+    state.envVars.push({});
     return state;
 });

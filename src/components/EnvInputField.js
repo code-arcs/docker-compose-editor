@@ -9,13 +9,10 @@ class EnvInputField extends React.Component {
     render() {
         const values = this.props.values;
         let envInputs = [];
-        if (values && Object.keys(values).length > 0) {
-            envInputs = Object.keys(values).map((key, idx) => {
-                var value = {};
-                value[key] = values[key];
-
+        if (Array.isArray(values) && values.length > 0) {
+            envInputs = values.map((variable, idx) => {
                 return (
-                    <InputField key={idx} index={idx} value={value} onChange={this.props.onChange.bind(this)}/>
+                    <InputField key={idx} index={idx} variable={variable} onChange={this.props.onChange.bind(this)}/>
                 );
             });
         } else {
@@ -43,14 +40,12 @@ export default EnvInputField;
 
 class InputField extends React.Component {
     handleDelete() {
-        const key = Object.keys(this.props.value)[0];
-        this.props.onChange(Actions.deleteEnvVariable(key));
+        this.props.onChange(Actions.deleteEnvVariable(this.props.index));
     }
 
     onChange(what, event) {
-        let key, oldKey;
-        key = oldKey = Object.keys(this.props.value)[0];
-        let value = this.props.value[key];
+        let key = this.props.variable.key;
+        let value = this.props.variable.value;
 
         if (what === "key") {
             key = event.target.value;
@@ -59,19 +54,24 @@ class InputField extends React.Component {
             value = event.target.value;
         }
 
-        this.props.onChange(Actions.updateEnvVariable(oldKey, {
+        this.props.onChange(Actions.updateEnvVariable({
+            idx: this.props.index,
             key: key,
             value: value
         }));
     }
 
     render() {
-        const key = Object.keys(this.props.value)[0];
-        const value = this.props.value[key];
+        const key = this.props.variable.key;
+        const value = this.props.variable.value;
 
         return (
             <div className="form-control-wrapper">
                 <input type="text" className="form-control" value={key} onChange={this.onChange.bind(this, "key")}/>
+                <datalist id="exampleList">
+                    <option value="A" />
+                    <option value="B" />
+                </datalist>
                 <span className="separator">:</span>
                 <input type="text" className="form-control" value={value} onChange={this.onChange.bind(this, "value")}/>
                 <span className="separator">

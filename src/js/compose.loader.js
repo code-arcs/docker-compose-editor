@@ -16,7 +16,6 @@ export default class ComposeLoader {
     }
 
     static toYaml(state) {
-        console.log(state)
         if (state.version === '2') {
             return YAML.stringify({
                 version: '2',

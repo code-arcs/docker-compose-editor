@@ -5,6 +5,12 @@ module.exports = class ComposeLoaderV2 {
     constructor(yaml, content) {
         this.yaml = yaml;
         this.parsePlainContent(content);
+
+        const services = this.yaml.services;
+        for(let serviceName in services) {
+            const service = services[serviceName];
+            this._transformEnvironment(service);
+        }
     }
 
     getVersion() {
@@ -17,6 +23,18 @@ module.exports = class ComposeLoaderV2 {
 
     getInactiveServices() {
         return this.inactiveServices;
+    }
+
+    _transformEnvironment(service) {
+        const envVars = service.environment;
+        if(envVars) {
+            service.environment = Object.keys(envVars).map(key => {
+                return {
+                    key: key,
+                    value: envVars[key]
+                }
+            });
+        }
     }
 
     parsePlainContent(content) {

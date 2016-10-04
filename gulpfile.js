@@ -5,6 +5,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const runSequence = require('run-sequence');
 const sass = require('gulp-sass');
 
+process.env.DCE_DEBUG=true;
+
 gulp.task('serve', function (callback) {
     gulp.watch('main.js', ['electron:restart']);
     gulp.watch(['src/**/*.scss', 'src/**/*.jsx', 'src/**/*.js', 'src/**/*.html', 'src/**/*.css'], ['build:dev']);
