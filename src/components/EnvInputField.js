@@ -30,6 +30,10 @@ class EnvInputField extends React.Component {
     substringMatcher(strs) {
         return function findMatches(q, cb) {
             const matches = [];
+
+            q = q.replace(/^\$/g, '');
+
+            console.log(strs);
             jQuery.each(strs, function (i, str) {
                 if (JSON.stringify(str).toLowerCase().indexOf(q.toLowerCase()) !== -1) {
                     matches.push({
