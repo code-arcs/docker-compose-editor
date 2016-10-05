@@ -1,3 +1,4 @@
+@import "variables";
 @import "service-list";
 @import "statusbar";
 @import "left.panel";
@@ -28,14 +29,22 @@ body {
   position: relative;
   top: 4px;
   left: 5px;
+  fill: #fff;
+
 
   &.icon-delete {
     flex-basis: 64px;
-
-    use path {
-      fill: red;
-    }
   }
+}
+
+.sidebar {
+  flex-basis: 200px;
+  height: 100%;
+  background-color: $color2;
+}
+
+.active .icon {
+  fill: #fff !important;
 }
 
 a .icon-delete {

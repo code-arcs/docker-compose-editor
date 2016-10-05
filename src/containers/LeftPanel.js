@@ -8,20 +8,22 @@ class LeftPanel extends React.Component {
         return (
             <div className="left-panel">
                 <div className="left-nav-panel">
-                    <ul className="service-list">
-                        <li className="service-list-item">
-                            <Link to={"/env"}>
-                                <svg className="icon">
+                    <ul>
+                        <li>
+                            <Link to={"/env"} activeClassName="active">
+                                <svg className="icon icon-nav">
                                     <use xlinkHref="#globe"/>
                                 </svg>
-                                Environment Variables
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={"/services"} activeClassName="active">
+                                <svg className="icon icon-nav">
+                                    <use xlinkHref="#services"/>
+                                </svg>
                             </Link>
                         </li>
                     </ul>
-                </div>
-                <div className="service-list-panel">
-                    <h2 className="left-panel-title">Services</h2>
-                    <ServiceList services={this.props.services}/>
                 </div>
             </div>
         )

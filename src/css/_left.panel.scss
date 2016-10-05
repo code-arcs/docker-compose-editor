@@ -1,6 +1,6 @@
 .left-panel {
-  background-color: #252526;
-  flex-basis: 225px;
+  background-color: $color3;
+  flex-basis: 50px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -9,6 +9,27 @@
 .left-nav-panel {
   display: flex;
   width: 100%;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  li {
+    text-align: center;
+
+    .icon-nav {
+      margin: 8px 0 8px -10px;
+      height: 24px;
+      width: 24px;
+      fill: rgba(255, 255, 255, 0.5);
+
+      &:hover {
+        fill: rgba(255, 255, 255, 1);
+      }
+    }
+  }
 }
 
 .left-panel-title {

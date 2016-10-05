@@ -5,6 +5,7 @@ import ImageInputField from "./ImageInputField";
 import RestartPolicyInputField from "./RestartPolicyInputField";
 import PortsInputField from "./PortsInputField";
 import EnvInputField from "./EnvInputField";
+import ServiceList from "./ServiceList";
 import * as pkg from "../../package.json";
 
 class ServiceDetails extends React.Component {

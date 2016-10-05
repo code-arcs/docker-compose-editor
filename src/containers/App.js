@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {ipcRenderer} from "electron";
 import LeftPanel from "./LeftPanel";
-import ContentPanel from "./MainPanel";
+import ContentPanel from "./ContentPanel";
 import StatusBarPanel from "./StatusBarPanel";
 import ComposeLoader from "../js/compose.loader";
 import * as Actions from "../actions";
@@ -25,7 +25,7 @@ class App extends React.Component {
             <div className="main-panel">
                 <main>
                     <LeftPanel/>
-                    <ContentPanel content={this.props.content}/>
+                    <ContentPanel {...this.props} sidebar={this.props.sidebar} content={this.props.content} />
                 </main>
                 <StatusBarPanel/>
             </div>

@@ -67,10 +67,10 @@ class InputField extends React.Component {
 
         return (
             <div className="form-control-wrapper">
-                <input type="text" className="form-control" value={key} onChange={this.onChange.bind(this, "key")}/>
+                <input type="text" list="exampleList" className="form-control" value={key} onChange={this.onChange.bind(this, "key")}/>
                 <datalist id="exampleList">
-                    <option value="A" />
-                    <option value="B" />
+                    <option value="A">A</option>
+                    <option value="A">B</option>
                 </datalist>
                 <span className="separator">:</span>
                 <input type="text" className="form-control" value={value} onChange={this.onChange.bind(this, "value")}/>
