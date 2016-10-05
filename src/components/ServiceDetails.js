@@ -4,7 +4,7 @@ import * as Actions from "../actions";
 import ImageInputField from "./ImageInputField";
 import RestartPolicyInputField from "./RestartPolicyInputField";
 import PortsInputField from "./PortsInputField";
-import EnvInputField from "./EnvInputField";
+import EnvInputFields from "./EnvInputFields";
 import ServiceList from "./ServiceList";
 import * as pkg from "../../package.json";
 
@@ -18,7 +18,7 @@ class ServiceDetails extends React.Component {
                 <ImageInputField image={this.service.image}/>
                 <RestartPolicyInputField value={this.service.restart} onChange={this.onChange.bind(this, 'restart')}/>
                 <PortsInputField values={this.service.ports} onChange={this.onChange.bind(this, 'ports')}/>
-                <EnvInputField values={this.service.environment} onChange={this.onChange.bind(this, 'env')}/>
+                <EnvInputFields values={this.service.environment} onChange={this.onChange.bind(this, 'env')}/>
             </div>
         )
     }
