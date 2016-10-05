@@ -1,46 +1,54 @@
 import React, {PropTypes} from "react";
+import {connect} from "react-redux";
 import * as Actions from "../actions";
 
+
+const jQuery = require('jquery');
+const typeahead = require('../../node_modules/typeahead.js/dist/typeahead.jquery');
+
 class EnvInputField extends React.Component {
-    addEnv() {
-        this.props.onChange(Actions.addEnvVariable());
-    }
-
-    render() {
-        const values = this.props.values;
-        let envInputs = [];
-        if (Array.isArray(values) && values.length > 0) {
-            envInputs = values.map((variable, idx) => {
-                return (
-                    <InputField key={idx} index={idx} variable={variable} onChange={this.props.onChange.bind(this)}/>
-                );
-            });
-        } else {
-            envInputs = (
-                <div className="no-values-panel">No environment variables declared.</div>
-            )
-        }
-
-        return (
-            <div className="form-group">
-                <label htmlFor="">
-                    Environment variables
-                    <a onClick={this.addEnv.bind(this)}>
-                        <svg className="icon">
-                            <use xlinkHref="#plus"/>
-                        </svg>
-                    </a>
-                </label>
-                {envInputs}
-            </div>
-        )
-    }
-}
-export default EnvInputField;
-
-class InputField extends React.Component {
     handleDelete() {
         this.props.onChange(Actions.deleteEnvVariable(this.props.index));
+    }
+
+    componentDidMount() {
+        const jQuery2 = jQuery(`#env_${this.props.index}`);
+        jQuery2.typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+            {
+                name: 'states',
+                source: this.substringMatcher(this.props.envVars),
+                display: 'key',
+                templates: {
+                    empty: [
+                        '<div class="empty-message">',
+                        'unable to find any Best Picture winners that match the current query',
+                        '</div>'
+                    ].join('\n'),
+                    suggestion: (res) => {
+                        console.log(res);
+                        return `<strong>\$${res.key}:${res.value}</strong>`
+                    }
+                }
+            });
+    }
+
+    substringMatcher(strs) {
+        return function findMatches(q, cb) {
+            const matches = [];
+            jQuery.each(strs, function (i, str) {
+                if (str.key.indexOf(q) !== -1) {
+                    matches.push({
+                        key: `\$${str.key}`,
+                        value: str.value
+                    });
+                }
+            });
+            cb(matches);
+        };
     }
 
     onChange(what, event) {
@@ -67,13 +75,10 @@ class InputField extends React.Component {
 
         return (
             <div className="form-control-wrapper">
-                <input type="text" list="exampleList" className="form-control" value={key} onChange={this.onChange.bind(this, "key")}/>
-                <datalist id="exampleList">
-                    <option value="A">A</option>
-                    <option value="A">B</option>
-                </datalist>
+                <input type="text" className="form-control" value={key} onChange={this.onChange.bind(this, "key")}/>
                 <span className="separator">:</span>
-                <input type="text" className="form-control" value={value} onChange={this.onChange.bind(this, "value")}/>
+                <input type="text" className="form-control typeahead" value={value} id={"env_" + this.props.index}
+                       onChange={this.onChange.bind(this, "value")}/>
                 <span className="separator">
                     <a onClick={this.handleDelete.bind(this)}>
                         <svg className="icon icon-delete"><use xlinkHref="#delete"/></svg>
@@ -83,3 +88,9 @@ class InputField extends React.Component {
         )
     }
 }
+function mapStateToScope(state) {
+    return {
+        envVars: state.app.envVars
+    }
+}
+export default connect(mapStateToScope)(EnvInputField)
