@@ -23,16 +23,7 @@ class EnvInputField extends React.Component {
                 source: this.substringMatcher(this.props.envVars),
                 display: 'key',
                 templates: {
-                    empty: [
-                        '<div class="empty-message">',
-                        'unable to find any Best Picture winners that match the current query',
-                        '</div>'
-                    ].join('\n'),
-                    suggestion: (res) => {
-                        console.log(res);
-                        return `<strong>\$${res.key}:${res.value}</strong>`
-                    }
-                }
+                    suggestion: (res) => `<strong>${res.key}:${res.value}</strong>`                }
             });
     }
 
@@ -40,7 +31,7 @@ class EnvInputField extends React.Component {
         return function findMatches(q, cb) {
             const matches = [];
             jQuery.each(strs, function (i, str) {
-                if (str.key.indexOf(q) !== -1) {
+                if (JSON.stringify(str).toLowerCase().indexOf(q.toLowerCase()) !== -1) {
                     matches.push({
                         key: `\$${str.key}`,
                         value: str.value
