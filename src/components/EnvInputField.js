@@ -2,7 +2,6 @@ import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import * as Actions from "../actions";
 
-
 const jQuery = require('jquery');
 const typeahead = require('../../node_modules/typeahead.js/dist/typeahead.jquery');
 
@@ -12,8 +11,7 @@ class EnvInputField extends React.Component {
     }
 
     componentDidMount() {
-        const jQuery2 = jQuery(`#env_${this.props.index}`);
-        jQuery2.typeahead({
+        jQuery(`#env_${this.props.index}`).typeahead({
                 hint: false,
                 highlight: true,
                 minLength: 1
@@ -34,7 +32,6 @@ class EnvInputField extends React.Component {
 
             q = q.replace(/^\$/g, '');
 
-            console.log(strs);
             jQuery.each(strs, function (i, str) {
                 if (JSON.stringify(str).toLowerCase().indexOf(q.toLowerCase()) !== -1) {
                     matches.push({
