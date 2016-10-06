@@ -1,7 +1,10 @@
 'use strict';
+import lodash from "lodash";
+
 const YAML = require('yamljs');
 const fs = require('fs');
 const ComposeLoaderV2 = require('./compose.loader.v2');
+
 
 export default class ComposeLoader {
     static createFromFile(file) {
@@ -17,9 +20,21 @@ export default class ComposeLoader {
 
     static toYaml(state) {
         if (state.version === '2') {
+            const services = lodash.cloneDeep(state.services);
+            for(let service in services) {
+                const service = services[service];
+                if(Array.isArray(service.environment)) {
+                    const environment = {};
+                    service.environment.forEach(env => {
+                        environment[env.key] = env.value;
+                    });
+                    service.environment = environment;
+                }
+            }
+
             return YAML.stringify({
                 version: '2',
-                services: state.services
+                services: services
             }, 10);
         }
     }

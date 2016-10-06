@@ -18,6 +18,13 @@ class App extends React.Component {
         ipcRenderer.on('export', () => {
             ipcRenderer.send('export-data', ComposeLoader.toYaml(this.props));
         });
+
+        ipcRenderer.on('save', () => {
+           ipcRenderer.send('save-data', {
+               envVars: this.props.envVars,
+               services: this.props.services
+           });
+        });
     }
 
     render() {

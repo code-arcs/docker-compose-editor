@@ -29,11 +29,17 @@ module.exports = {
         },
         {
             label: _('menu.file.save.label'),
-            accelerator: 'Ctrl+S'
+            accelerator: 'Ctrl+S',
+            click(item, focusedWindow) {
+                focusedWindow.webContents.send('save');
+            }
         },
         {
             label: _('menu.file.save_as.label') + '...',
-            accelerator: 'Ctrl+Shift+S'
+            accelerator: 'Ctrl+Shift+S',
+            click(item, focusedWindow) {
+                focusedWindow.webContents.send('save-as');
+            }
         },
         {
             type: 'separator'
