@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 class ServiceList extends React.Component {
     render() {
         let services;
-console.log(this.props.services);
         if(this.props.services) {
             services = Object.keys(this.props.services).map((s, idx) => {
                 const service = this.props.services[s];

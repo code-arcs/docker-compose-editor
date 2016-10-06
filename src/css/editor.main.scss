@@ -3,6 +3,7 @@
 @import "statusbar";
 @import "left.panel";
 @import "main.panel";
+@import "typeahead";
 @import "content.panel";
 @import "form";
 @import "../../node_modules/react-select/dist/react-select.css";
@@ -41,6 +42,12 @@ body {
   flex-basis: 200px;
   height: 100%;
   background-color: $color2;
+
+  h2 {
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0 16px;
+  }
 }
 
 .active .icon {
