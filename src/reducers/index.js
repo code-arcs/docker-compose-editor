@@ -44,7 +44,7 @@ reducerRegistry.addReducer(C.OPEN_FILE, (state, action) => {
 });
 
 reducerRegistry.addReducer(C.UPDATE_ENV_VARIABLE, (state, action) => {
-    if(action.payload.serviceName) {
+    if (action.payload.serviceName) {
         const service = state.services[action.payload.serviceName];
         service.environment[action.payload.idx] = {
             key: action.payload.key,
@@ -60,7 +60,7 @@ reducerRegistry.addReducer(C.UPDATE_ENV_VARIABLE, (state, action) => {
 });
 
 reducerRegistry.addReducer(C.DELETE_ENV_VARIABLE, (state, action) => {
-    if(action.payload.serviceName) {
+    if (action.payload.serviceName) {
         const service = state.services[action.payload.serviceName];
         service.environment = service.environment.filter((val, idx) => action.payload.idx !== idx);
     } else {
@@ -70,6 +70,14 @@ reducerRegistry.addReducer(C.DELETE_ENV_VARIABLE, (state, action) => {
 });
 
 reducerRegistry.addReducer(C.ADD_ENV_VARIABLE, (state, action) => {
-    state.envVars.push({});
+    if (action.payload && action.payload.serviceName) {
+        const service = state.services[action.payload.serviceName];
+        service.environment.push({
+            key: 'KEY',
+            value: 'VALUE',
+        });
+    } else {
+        state.envVars.push({});
+    }
     return state;
 });
