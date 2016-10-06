@@ -46,15 +46,19 @@
   color: #fff;
   background-color: #343434;
   display: block;
-  width: 100%;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
   border: none;
   border-bottom: 1px solid #ccc;
+  flex: 1 0 0;
 
   &.error {
     background-color: rgba(#a94442, 0.2);
     border-color: #a94442;
   }
+}
+
+select.form-control {
+  flex: auto;
 }

@@ -1,0 +1,15 @@
+.tt-menu {
+  width: 100%;
+  background-color: $color3;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.tt-selectable {
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, .2);
+  }
+}

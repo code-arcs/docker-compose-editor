@@ -14,7 +14,7 @@ class EnvInputField extends React.Component {
     componentDidMount() {
         const jQuery2 = jQuery(`#env_${this.props.index}`);
         jQuery2.typeahead({
-                hint: true,
+                hint: false,
                 highlight: true,
                 minLength: 1
             },
@@ -23,7 +23,8 @@ class EnvInputField extends React.Component {
                 source: this.substringMatcher(this.props.envVars),
                 display: 'key',
                 templates: {
-                    suggestion: (res) => `<strong>${res.key}:${res.value}</strong>`                }
+                    suggestion: (res) => `<div><strong>${res.key}:</strong> ${res.value}</div>`
+                }
             });
     }
 

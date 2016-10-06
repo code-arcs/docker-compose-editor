@@ -4,7 +4,10 @@ import ComposeLoader from "../js/compose.loader";
 import {ReducerRegistry} from "./reducerRegistry";
 
 const initialState = {
-    envVars: [],
+    envVars: [
+        {key: "SPRING_RABBITMQ_HOST", value: "127.0.0.1"},
+        {key: "EUREKA_CLIENT_SERVICEURL", value: "http://eureka-service:8761"}
+    ],
     services: [],
     activeService: {}
 };
