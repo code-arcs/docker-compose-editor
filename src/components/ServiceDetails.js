@@ -25,9 +25,8 @@ class ServiceDetails extends React.Component {
 
     onChange(what, valueObject) {
         if (what === 'env') {
-            valueObject.payload = {
-                serviceName: this.service._name
-            };
+            valueObject.payload = valueObject.payload || {};
+            valueObject.payload.serviceName = this.service._name;
             this.props.dispatch(valueObject);
         }
         if (what === 'restart') {
