@@ -1,16 +1,14 @@
 import React, {PropTypes} from "react";
+import {connect} from "react-redux";
+import * as Actions from "../actions";
 const _ = require('../../i18n');
 
 class ImageInputField extends React.Component {
-    onChange() {
-
-    }
-
     render() {
         let imageName = "";
         let imageTag = "";
 
-        const image = this.props.image;
+        const image = this.props.service.image;
         if(image) {
             const split = image.split(':');
             imageName = split[0];
@@ -24,15 +22,19 @@ class ImageInputField extends React.Component {
                     <input type="text"
                            className="form-control docker-image-name"
                            value={imageName}
-                           onChange={this.onChange}/>
+                           onChange={this.onChange.bind(this)}/>
                     <span className="separator">:</span>
                     <input type="text"
                            className="form-control docker-image-tag"
                            value={imageTag}
-                           onChange={this.onChange}/>
+                           onChange={this.onChange.bind(this)}/>
                 </div>
             </div>
         )
     }
+
+    onChange(event) {
+
+    }
 }
-export default ImageInputField
+export default connect()(ImageInputField);

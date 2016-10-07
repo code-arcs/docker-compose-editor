@@ -48,7 +48,7 @@ reducerRegistry.register(C.OPEN_FILE, (state, action) => {
 
 reducerRegistry.register(C.UPDATE_ENV_VARIABLE, (state, action) => {
     if (action.payload.serviceName) {
-        const service = state.services[action.payload.serviceName];
+        const service = state.services.find(s => s._name === action.payload.serviceName);
         service.environment[action.payload.idx] = {
             key: action.payload.key,
             value: action.payload.value,
@@ -74,7 +74,8 @@ reducerRegistry.register(C.DELETE_ENV_VARIABLE, (state, action) => {
 
 reducerRegistry.register(C.ADD_ENV_VARIABLE, (state, action) => {
     if (action.payload && action.payload.serviceName) {
-        const service = state.services[action.payload.serviceName];
+        const service = state.services.find(s => s._name === action.payload.serviceName);
+        service.environment = service.environment || [];
         service.environment.push({
             key: 'KEY',
             value: 'VALUE',

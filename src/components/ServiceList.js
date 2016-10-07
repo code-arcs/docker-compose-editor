@@ -2,7 +2,7 @@ import React, {PropTypes} from "react";
 import ServiceListItem from "./ServiceListItem";
 import {connect} from "react-redux";
 import * as Actions from "../actions";
-import {RandomNameGenerator} from "../utils";
+import {Service} from '../domain';
 
 class ServiceList extends React.Component {
     render() {
@@ -30,9 +30,7 @@ class ServiceList extends React.Component {
     }
 
     addService() {
-        this.props.dispatch(Actions.addService({
-            _name: RandomNameGenerator.getRandomName()
-        }));
+        this.props.dispatch(Actions.addService(new Service()));
     }
 }
 

@@ -1,6 +1,7 @@
 'use strict';
-const YAML = require('yamljs');
+import {generateUUID} from '../utils';
 
+const YAML = require('yamljs');
 module.exports = class ComposeLoaderV2 {
     constructor(yaml, content) {
         this.yaml = yaml;
@@ -18,7 +19,14 @@ module.exports = class ComposeLoaderV2 {
     }
 
     getActiveServices() {
-        return this.yaml.services;
+        const services = [];
+        for(let name in this.yaml.services) {
+            const service = this.yaml.services[name];
+            service._id = generateUUID();
+            service._name = name;
+            services.push(service);
+        }
+        return services;
     }
 
     getInactiveServices() {

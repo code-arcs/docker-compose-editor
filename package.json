@@ -6,6 +6,7 @@
   "author": "info@codearcs.de",
   "scripts": {
     "start": "electron .",
+    "test": "mocha",
     "serve": "gulp serve"
   },
   "devDependencies": {
@@ -13,7 +14,8 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-es2015": "^6.14.0",
     "babelify": "^7.3.0",
-    "chai": "^3.5.0",
+    "chai": "*",
+    "mocha": "*",
     "electron": "^1.3.6",
     "electron-connect": "^0.6.0",
     "gulp": "^3.9.1",
