@@ -1,5 +1,4 @@
 import React from "react";
-import ServiceList from "../components/ServiceList";
 import {connect} from "react-redux";
 import {Link} from "react-router";
 

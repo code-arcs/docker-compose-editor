@@ -1,6 +1,5 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
-import * as Actions from "../actions";
 import ImageInputField from "./ImageInputField";
 import RestartPolicyInputField from "./RestartPolicyInputField";
 import PortsInputField from "./PortsInputField";
@@ -25,11 +24,11 @@ class ServiceDetails extends React.Component {
                 <div style={style}>
                     <pre>{JSON.stringify(this.service, null, 2)}</pre>
                 </div>
-                <ServiceNameInputField service={this.service} />
+                <ServiceNameInputField service={this.service}/>
                 <ImageInputField service={this.service}/>
-                <RestartPolicyInputField service={this.service} />
-                <PortsInputField service={this.service} />
-                <EnvInputFields values={this.service.environment}  />
+                <RestartPolicyInputField service={this.service}/>
+                <PortsInputField service={this.service}/>
+                <EnvInputFields values={this.service.environment}/>
             </div>
         )
     }

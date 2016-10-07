@@ -21,9 +21,9 @@ export default class ComposeLoader {
     static toYaml(state) {
         if (state.version === '2') {
             const services = lodash.cloneDeep(state.services);
-            for(let service in services) {
+            for (let service in services) {
                 const service = services[service];
-                if(Array.isArray(service.environment)) {
+                if (Array.isArray(service.environment)) {
                     const environment = {};
                     service.environment.forEach(env => {
                         environment[env.key] = env.value;

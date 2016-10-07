@@ -20,10 +20,10 @@ class App extends React.Component {
         });
 
         ipcRenderer.on('save', () => {
-           ipcRenderer.send('save-data', {
-               envVars: this.props.envVars,
-               services: this.props.services
-           });
+            ipcRenderer.send('save-data', {
+                envVars: this.props.envVars,
+                services: this.props.services
+            });
         });
     }
 
@@ -32,7 +32,7 @@ class App extends React.Component {
             <div className="main-panel">
                 <main>
                     <LeftPanel/>
-                    <ContentPanel {...this.props} sidebar={this.props.sidebar} content={this.props.content} />
+                    <ContentPanel {...this.props} sidebar={this.props.sidebar} content={this.props.content}/>
                 </main>
                 <StatusBarPanel/>
             </div>

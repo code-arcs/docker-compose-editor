@@ -2,7 +2,7 @@ import lodash from "lodash";
 import * as C from "../constants";
 import ComposeLoader from "../js/compose.loader";
 import {ReducerRegistry} from "./reducerRegistry";
-import {generateUUID} from '../utils';
+import {generateUUID} from "../utils";
 
 const initialState = {
     envVars: [],

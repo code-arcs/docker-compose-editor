@@ -3,7 +3,7 @@ import React from "react";
 export default class ContentPanel extends React.Component {
     render() {
         let sidebar;
-        if(this.props.sidebar) {
+        if (this.props.sidebar) {
             sidebar = (
                 <div className="sidebar">
                     {this.props.sidebar}

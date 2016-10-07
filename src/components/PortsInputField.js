@@ -110,10 +110,10 @@ class PortInputField extends React.Component {
     onChange(portType, event) {
         const portMapping = this.props.portMapping;
         const value = event.target.value;
-        if(portType === 'external') {
+        if (portType === 'external') {
             portMapping.setExternalPort(value);
         }
-        if(portType === 'internal') {
+        if (portType === 'internal') {
             portMapping.setInternalPort(value);
         }
 

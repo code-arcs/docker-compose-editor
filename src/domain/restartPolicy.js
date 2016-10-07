@@ -8,12 +8,12 @@ RestartPolicy.UNLESS_STOPPED = "unless-stopped";
  * @param key
  * @returns {string}
  */
-RestartPolicy.get = function(key) {
+RestartPolicy.get = function (key) {
     let value = RestartPolicy[key];
-    if(!value) {
-        for(let a in RestartPolicy) {
+    if (!value) {
+        for (let a in RestartPolicy) {
             const policy = RestartPolicy[a];
-            if(typeof policy === 'string' && key === policy) {
+            if (typeof policy === 'string' && key === policy) {
                 value = policy;
                 break;
             }

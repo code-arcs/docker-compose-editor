@@ -42,7 +42,7 @@ export class Service {
         const portMapping = new PortMapping(externalPort, internalPort);
         const externalPortAlreadyUsed = this._ports.some(portMapping => portMapping.externalPort === portMapping.getExternalPort());
         const internalPortAlreadyUsed = this._ports.some(portMapping => portMapping.internalPort === portMapping.getInternalPort());
-        if(externalPortAlreadyUsed || internalPortAlreadyUsed) {
+        if (externalPortAlreadyUsed || internalPortAlreadyUsed) {
             // TODO: what to do, when some of the desired ports are already in use?
         } else {
             this._ports.push(portMapping);

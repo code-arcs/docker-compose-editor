@@ -2,7 +2,7 @@ import React, {PropTypes} from "react";
 import ServiceListItem from "./ServiceListItem";
 import {connect} from "react-redux";
 import * as Actions from "../actions";
-import {Service} from '../domain';
+import {Service} from "../domain";
 
 class ServiceList extends React.Component {
     render() {
