@@ -5,4 +5,20 @@ export class EnvironmentVariable {
             this._value = args[1];
         }
     }
+
+    getKey() {
+        return this._key;
+    }
+
+    setKey(key) {
+        this._key = key;
+    }
+
+    getValue() {
+        return this._value;
+    }
+
+    setValue(value) {
+        this._value = value;
+    }
 }

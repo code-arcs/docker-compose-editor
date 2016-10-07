@@ -1,19 +1,18 @@
 import React, {PropTypes} from "react";
-import * as Actions from "../actions";
+import {connect} from "react-redux";
+import * as Action from "../actions";
 import EnvInputField from "./EnvInputField";
 
 class EnvInputFields extends React.Component {
-    addEnv() {
-        this.props.onChange(Actions.addEnvVariable());
-    }
-
     render() {
-        const values = this.props.values;
-        let envInputs = [];
-        if (Array.isArray(values) && values.length > 0) {
-            envInputs = values.map((variable, idx) => {
+        const environmentVariables = this.props.service.getEnvironmentVariables();
+        let envInputs;
+        if (Array.isArray(environmentVariables) && environmentVariables.length > 0) {
+            envInputs = environmentVariables.map((variable, idx) => {
                 return (
-                    <EnvInputField key={idx} index={idx} variable={variable} onChange={this.props.onChange.bind(this)}/>
+                    <EnvInputField key={idx}
+                                   variable={variable}
+                                   onChange={this.onChange.bind(this)}/>
                 );
             });
         } else {
@@ -36,5 +35,15 @@ class EnvInputFields extends React.Component {
             </div>
         )
     }
+
+    onChange() {
+        this.props.dispatch(Action.updateService(this.props.service));
+    }
+
+    addEnv() {
+        const service = this.props.service;
+        service.addEnvironmentVariable();
+        this.props.dispatch(Action.updateService(service));
+    }
 }
-export default EnvInputFields;
+export default connect()(EnvInputFields);

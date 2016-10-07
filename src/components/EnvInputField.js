@@ -6,6 +6,32 @@ const jQuery = require('jquery');
 const typeahead = require('../../node_modules/typeahead.js/dist/typeahead.jquery');
 
 class EnvInputField extends React.Component {
+    render() {
+        const key = this.props.variable.key;
+        const value = this.props.variable.value;
+
+        return (
+            <div className="form-control-wrapper">
+                <input type="text"
+                       className="form-control"
+                       value={this.props.variable.getKey()}
+                       onChange={this.onChange.bind(this, "key")}/>
+                <span className="separator">:</span>
+                <input type="text"
+                       className="form-control typeahead"
+                       value={this.props.variable.getValue()}
+                       id={"env_" + this.props.index}
+                       onChange={this.onChange.bind(this, "value")}/>
+                <span className="separator">
+                    <a onClick={this.handleDelete.bind(this)}>
+                        <svg className="icon icon-delete"><use xlinkHref="#delete"/></svg>
+                    </a>
+                </span>
+            </div>
+        )
+    }
+
+
     handleDelete() {
         this.props.onChange(Actions.deleteEnvVariable(this.props.index));
     }
@@ -45,40 +71,16 @@ class EnvInputField extends React.Component {
     }
 
     onChange(what, event) {
-        let key = this.props.variable.key;
-        let value = this.props.variable.value;
+        const environmentVariable = this.props.variable;
 
         if (what === "key") {
-            key = event.target.value;
+            environmentVariable.setKey(event.target.value);
         }
         if (what === "value") {
-            value = event.target.value;
+            environmentVariable.setValue(event.target.value);
         }
 
-        this.props.onChange(Actions.updateEnvVariable({
-            idx: this.props.index,
-            key: key,
-            value: value
-        }));
-    }
-
-    render() {
-        const key = this.props.variable.key;
-        const value = this.props.variable.value;
-
-        return (
-            <div className="form-control-wrapper">
-                <input type="text" className="form-control" value={key} onChange={this.onChange.bind(this, "key")}/>
-                <span className="separator">:</span>
-                <input type="text" className="form-control typeahead" value={value} id={"env_" + this.props.index}
-                       onChange={this.onChange.bind(this, "value")}/>
-                <span className="separator">
-                    <a onClick={this.handleDelete.bind(this)}>
-                        <svg className="icon icon-delete"><use xlinkHref="#delete"/></svg>
-                    </a>
-                </span>
-            </div>
-        )
+        this.props.onChange();
     }
 }
 function mapStateToScope(state) {

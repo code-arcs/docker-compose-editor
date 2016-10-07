@@ -28,7 +28,7 @@ class ServiceDetails extends React.Component {
                 <ImageInputField service={this.service}/>
                 <RestartPolicyInputField service={this.service}/>
                 <PortsInputField service={this.service}/>
-                <EnvInputFields values={this.service.environment}/>
+                <EnvInputFields service={this.service}/>
             </div>
         )
     }
