@@ -1,5 +1,5 @@
 import {generateUUID, RandomNameGenerator} from "../utils";
-import {PortMapping, RestartPolicy, BaseImage} from "./";
+import {PortMapping, RestartPolicy, BaseImage, EnvironmentVariable} from "./";
 
 export class Service {
     constructor(name) {
@@ -26,10 +26,6 @@ export class Service {
         return this._restart;
     }
 
-    /**
-     * @param {Number} externalPort
-     * @param {Number} internalPort
-     */
     addPortMapping(externalPort, internalPort) {
         const portMapping = new PortMapping(externalPort, internalPort);
         const externalPortAlreadyUsed = this._ports.some(portMapping => portMapping.externalPort === portMapping.getExternalPort());
@@ -43,5 +39,13 @@ export class Service {
 
     getPortMappings() {
         return this._ports;
+    }
+
+    addEnvironmentVariable() {
+        this._environment.push(new EnvironmentVariable(arguments));
+    }
+
+    getEnvironmentVariables() {
+        return this._environment;
     }
 }
