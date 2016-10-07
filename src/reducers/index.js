@@ -41,7 +41,7 @@ reducerRegistry.register(C.SHOW_SERVICE_DETAILS, (state, action) => {
 
 reducerRegistry.register(C.OPEN_FILE, (state, action) => {
     const Compose = ComposeLoader.createFromFile(action.payload);
-    state.services = Compose.getActiveServices();
+    state.services = Compose.getServices();
     state.version = Compose.getVersion();
     return state;
 });
