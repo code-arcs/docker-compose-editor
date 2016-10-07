@@ -49,6 +49,10 @@ export class Service {
         }
     }
 
+    setPortMappings(portMappings) {
+        this._ports = portMappings;
+    }
+
     /**
      * @returns {Array<PortMapping>}
      */

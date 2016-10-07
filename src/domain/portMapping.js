@@ -39,7 +39,15 @@ export class PortMapping {
         return this._externalPort;
     }
 
+    setExternalPort(port) {
+        this._externalPort = port;
+    }
+
     getInternalPort() {
         return this._internalPort;
+    }
+
+    setInternalPort(port) {
+        this._internalPort = port;
     }
 }

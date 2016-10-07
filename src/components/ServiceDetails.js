@@ -25,16 +25,13 @@ class ServiceDetails extends React.Component {
                 <div style={style}>
                     <pre>{JSON.stringify(this.service, null, 2)}</pre>
                 </div>
-                <ServiceNameInputField service={this.service} onChange={this.onChange.bind(this, 'name')}/>
+                <ServiceNameInputField service={this.service} />
                 <ImageInputField service={this.service}/>
-                <RestartPolicyInputField service={this.service} onChange={this.onChange.bind(this, 'restart')}/>
-                <PortsInputField service={this.service.ports} onChange={this.onChange.bind(this, 'ports')}/>
-                <EnvInputFields values={this.service.environment} onChange={this.onChange.bind(this, 'env')}/>
+                <RestartPolicyInputField service={this.service} />
+                <PortsInputField service={this.service} />
+                <EnvInputFields values={this.service.environment}  />
             </div>
         )
-    }
-
-    onChange(what, valueObject) {
     }
 
     getService() {
