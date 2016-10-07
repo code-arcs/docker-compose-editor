@@ -3,7 +3,7 @@ export class ReducerRegistry {
         this.reducer = {};
     }
 
-    addReducer(actionType, fn) {
+    register(actionType, fn) {
         this.reducer[actionType] = fn;
     }
 

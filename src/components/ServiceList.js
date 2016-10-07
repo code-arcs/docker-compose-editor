@@ -7,10 +7,9 @@ import {RandomNameGenerator} from "../utils";
 class ServiceList extends React.Component {
     render() {
         let services;
-        if (this.props.services) {
-            services = Object.keys(this.props.services).map((s, idx) => {
-                const service = this.props.services[s];
-                service._name = s;
+        if (Array.isArray(this.props.services)) {
+
+            services = this.props.services.map((service, idx) => {
                 return (
                     <ServiceListItem key={idx} service={service}/>
                 )

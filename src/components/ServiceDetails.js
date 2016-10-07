@@ -5,7 +5,7 @@ import ImageInputField from "./ImageInputField";
 import RestartPolicyInputField from "./RestartPolicyInputField";
 import PortsInputField from "./PortsInputField";
 import EnvInputFields from "./EnvInputFields";
-import ServiceList from "./ServiceList";
+import ServiceNameInputField from "./ServiceNameInputField";
 import * as pkg from "../../package.json";
 
 class ServiceDetails extends React.Component {
@@ -14,7 +14,7 @@ class ServiceDetails extends React.Component {
         document.title = `${pkg.productName} [${this.service._name}]`;
         return (
             <div>
-                <h1>{this.props.params.id}</h1>
+                <ServiceNameInputField value={this.service._name} onChange={this.onChange.bind(this, 'name')}/>
                 <ImageInputField image={this.service.image}/>
                 <RestartPolicyInputField value={this.service.restart} onChange={this.onChange.bind(this, 'restart')}/>
                 <PortsInputField values={this.service.ports} onChange={this.onChange.bind(this, 'ports')}/>
@@ -28,6 +28,10 @@ class ServiceDetails extends React.Component {
             valueObject.payload = valueObject.payload || {};
             valueObject.payload.serviceName = this.service._name;
             this.props.dispatch(valueObject);
+        }
+        if (what === 'name') {
+            this.service._name = valueObject.target.value;
+            this.props.dispatch(Actions.updateService(this.service));
         }
         if (what === 'restart') {
             this.service.restart = valueObject.value;
@@ -55,7 +59,8 @@ class ServiceDetails extends React.Component {
     }
 
     getService() {
-        return this.props.services[this.props.params.id] || {};
+        console.log(this.props.services, this.props.params.id);
+        return this.props.services.find(service => service._id === this.props.params.id) || {};
     }
 }
 

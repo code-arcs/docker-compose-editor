@@ -57,6 +57,12 @@
     background-color: rgba(#a94442, 0.2);
     border-color: #a94442;
   }
+
+  &.service-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 16px 0;
+  }
 }
 
 select.form-control {
