@@ -3,17 +3,29 @@ import {PortMapping, RestartPolicy, BaseImage, EnvironmentVariable} from "./";
 
 export class Service {
     constructor(name) {
-        this._name = name || RandomNameGenerator.getRandomName();
         this._id = generateUUID();
+        this._name = name || RandomNameGenerator.getRandomName();
+        this._baseImage = new BaseImage();
         this._ports = [];
         this._environment = [];
         this._restart = RestartPolicy.NO;
+    }
+
+    setName(name) {
+        this._name = name;
+    }
+
+    getName() {
+        return this._name;
     }
 
     setBaseImage(image) {
         this._baseImage = new BaseImage(image);
     }
 
+    /**
+     * @returns {BaseImage}
+     */
     getBaseImage() {
         return this._baseImage;
     }
@@ -37,6 +49,9 @@ export class Service {
         }
     }
 
+    /**
+     * @returns {Array<PortMapping>}
+     */
     getPortMappings() {
         return this._ports;
     }

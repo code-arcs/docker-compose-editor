@@ -63,6 +63,15 @@
     font-weight: bold;
     margin: 16px 0;
   }
+
+  &.image-type {
+    flex-basis: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 0 4px;
+    text-align: center;
+    padding: 6px 4px;
+  }
 }
 
 select.form-control {

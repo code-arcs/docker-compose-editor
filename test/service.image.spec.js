@@ -42,6 +42,13 @@ describe('Service: Image', function() {
         expect(this.service.getBaseImage().getDigest()).to.equal(undefined);
     });
 
+    it('should not fail when providing empty image name.', () => {
+        this.service.setBaseImage();
+        expect(this.service.getBaseImage().getImage()).to.equal(undefined);
+        expect(this.service.getBaseImage().getTag()).to.equal(undefined);
+        expect(this.service.getBaseImage().getDigest()).to.equal(undefined);
+    });
+
     it('should return image as string.', () => {
         this.service.setBaseImage('image:123');
         expect(this.service.getBaseImage().toString()).to.equal('image:123');
