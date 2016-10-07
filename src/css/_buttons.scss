@@ -1,0 +1,17 @@
+.btn {
+  display: block;
+  padding: 4px 8px;
+  text-align: center;
+  background-color: $color1;
+  color: #fff;
+  text-decoration: none;
+  margin: 8px 0;
+
+  &.btn-primary {
+    background-color: #0e639c;
+
+    &:hover {
+      background-color: #006bb3;
+    }
+  }
+}

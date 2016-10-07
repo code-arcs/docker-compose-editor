@@ -30,12 +30,4 @@ class LeftPanel extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        services: state.app.services
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(LeftPanel)
+export default connect()(LeftPanel)

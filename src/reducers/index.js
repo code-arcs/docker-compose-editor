@@ -5,7 +5,7 @@ import {ReducerRegistry} from "./reducerRegistry";
 
 const initialState = {
     envVars: [],
-    services: [],
+    services: {},
     activeService: {}
 };
 
@@ -27,7 +27,7 @@ reducerRegistry.addReducer(C.UPDATE_SERVICE, (state, action) => {
 });
 
 reducerRegistry.addReducer(C.ADD_SERVICE, (state, action) => {
-    state.services.push(action.payload);
+    state.services[action.payload._name] = action.payload;
     return state;
 });
 

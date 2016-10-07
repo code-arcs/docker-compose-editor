@@ -7,19 +7,28 @@ class ImageInputField extends React.Component {
     }
 
     render() {
+        let imageName = "";
+        let imageTag = "";
+
         const image = this.props.image;
-        const split = image.split(':');
-        const imageName = split[0];
-        const imageTag = split[1] || "latest";
+        if(image) {
+            const split = image.split(':');
+            imageName = split[0];
+            imageTag = split[1] || "latest";
+        }
 
         return (
             <div className="form-group docker-image">
                 <label htmlFor="exampleInputName2">{_('Image name')}</label>
                 <div className="form-control-wrapper">
-                    <input type="text" className="form-control docker-image-name" value={imageName}
+                    <input type="text"
+                           className="form-control docker-image-name"
+                           value={imageName}
                            onChange={this.onChange}/>
                     <span className="separator">:</span>
-                    <input type="text" className="form-control docker-image-tag" value={imageTag}
+                    <input type="text"
+                           className="form-control docker-image-tag"
+                           value={imageTag}
                            onChange={this.onChange}/>
                 </div>
             </div>
