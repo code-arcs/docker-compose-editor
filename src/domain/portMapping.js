@@ -6,7 +6,7 @@ export class PortMapping {
                 this._externalPort = String(splittedPorts[0]);
                 this._internalPort = String(splittedPorts[1]);
             } else if (splittedPorts.length === 1) {
-                this._externalPort = undefined;
+                this._externalPort = "";
                 this._internalPort = String(splittedPorts[0]);
             }
         } else {

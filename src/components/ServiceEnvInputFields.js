@@ -3,9 +3,9 @@ import {connect} from "react-redux";
 import * as Action from "../actions";
 import EnvInputField from "./EnvInputField";
 
-class EnvInputFields extends React.Component {
+class ServiceEnvInputFields extends React.Component {
     render() {
-        const environmentVariables = this.props.service ? this.props.service.getEnvironmentVariables() : this.props.envVars;
+        const environmentVariables = this.props.service.getEnvironmentVariables();
         let envInputs;
         if (Array.isArray(environmentVariables) && environmentVariables.length > 0) {
             envInputs = environmentVariables.map((variable, idx) => {
@@ -13,7 +13,8 @@ class EnvInputFields extends React.Component {
                     <EnvInputField key={idx}
                                    index={idx}
                                    variable={variable}
-                                   onChange={this.onChange.bind(this)}/>
+                                   onChange={this.onChange.bind(this)}
+                                   onDelete={this.onDelete.bind(this)}/>
                 );
             });
         } else {
@@ -41,21 +42,17 @@ class EnvInputFields extends React.Component {
         this.props.dispatch(Action.updateService(this.props.service));
     }
 
+    onDelete(idx) {
+        const filter = this.props.service.getEnvironmentVariables().filter((env, envIdx) => envIdx !== idx);
+        this.props.service.setEnvironmentVariables(filter);
+        this.onChange();
+    }
+
     addEnv() {
-        if(this.props.service) {
-            const service = this.props.service;
-            service.addEnvironmentVariable();
-            this.props.dispatch(Action.updateService(service));
-        } else {
-            this.props.dispatch(Action.addEnvVariable());
-        }
+        const service = this.props.service;
+        service.addEnvironmentVariable();
+        this.props.dispatch(Action.updateService(service));
     }
 }
 
-function mapStateToScope(state) {
-    return {
-        envVars: state.app.envVars
-    }
-}
-
-export default connect(mapStateToScope)(EnvInputFields);
+export default connect()(ServiceEnvInputFields);

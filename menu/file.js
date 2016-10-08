@@ -24,6 +24,7 @@ module.exports = {
                     const data = fs.readFileSync(files[0], 'binary');
                     var zip = new Zip(data, {base64: false, checkCRC32: true});
                     const file = zip.files['data.json'];
+                    electron.app.currentProjectFile = files[0];
                     focusedWindow.webContents.send('open-file', JSON.parse(file.asText()));
                 }
             }

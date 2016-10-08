@@ -68,6 +68,10 @@ export class Service {
         return this._environment;
     }
 
+    setEnvironmentVariables(envVars) {
+        this._environment = envVars;
+    }
+
     static fromJSON(json) {
         const service = Object.assign(new Service(), json);
         service._baseImage = BaseImage.fromJSON(service._baseImage);

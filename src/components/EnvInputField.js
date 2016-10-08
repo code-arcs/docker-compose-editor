@@ -33,7 +33,7 @@ class EnvInputField extends React.Component {
 
 
     handleDelete() {
-        this.props.onChange(Actions.deleteEnvVariable(this.props.index));
+        this.props.onDelete(this.props.index);
     }
 
     componentDidMount() {

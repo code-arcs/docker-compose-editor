@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import ImageInputField from "./ImageInputField";
 import RestartPolicyInputField from "./RestartPolicyInputField";
 import PortsInputField from "./PortsInputField";
-import EnvInputFields from "./EnvInputFields";
+import ServiceEnvInputFields from "./ServiceEnvInputFields";
 import ServiceNameInputField from "./ServiceNameInputField";
 import * as pkg from "../../package.json";
 
@@ -28,7 +28,7 @@ class ServiceDetails extends React.Component {
                 <ImageInputField service={this.service}/>
                 <RestartPolicyInputField service={this.service}/>
                 <PortsInputField service={this.service}/>
-                <EnvInputFields service={this.service}/>
+                <ServiceEnvInputFields service={this.service}/>
             </div>
         )
     }
