@@ -59,3 +59,10 @@ export function deleteEnvVariable(idx) {
         }
     }
 }
+
+export function importComposeFile(composeFile) {
+    return {
+        type: C.IMPORT_COMPOSE_FILE,
+        payload: composeFile
+    }
+}

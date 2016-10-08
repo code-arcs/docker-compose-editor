@@ -46,7 +46,6 @@ reducerRegistry.register(C.SHOW_SERVICE_DETAILS, (state, action) => {
 reducerRegistry.register(C.OPEN_FILE, (state, action) => {
     const Compose = ComposeLoader.createFromFile(action.payload);
     state.services = Compose.getServices();
-    state.version = Compose.getVersion();
     return state;
 });
 
@@ -78,5 +77,11 @@ reducerRegistry.register(C.DELETE_ENV_VARIABLE, (state, action) => {
 
 reducerRegistry.register(C.ADD_ENV_VARIABLE, (state, action) => {
     state.envVars.push(new EnvironmentVariable());
+    return state;
+});
+
+reducerRegistry.register(C.IMPORT_COMPOSE_FILE, (state, action) => {
+    const Compose = ComposeLoader.createFromFile(action.payload);
+    Array.prototype.push.apply(state.services, Compose.getServices());
     return state;
 });

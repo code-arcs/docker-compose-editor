@@ -16,6 +16,9 @@
       },
       "quit": {
         "label": "Beenden"
+      },
+      "import": {
+        "label": "Importieren..."
       }
     },
     "help": {

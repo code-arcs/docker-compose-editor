@@ -14,13 +14,33 @@ module.exports = {
                 const dialogOpts = {
                     properties: ['openFile'],
                     filters: [
-                        {name: 'Docker-Compose-File', extensions: ['yml', 'yaml']}
+                        {name: 'Docker-Compose-File', extensions: ['dce']}
                     ]
                 };
 
                 const files = dialog.showOpenDialog(dialogOpts);
                 if(files && files.length === 1) {
                     focusedWindow.webContents.send('open-file', files[0]);
+                }
+            }
+        },
+        {
+            type: 'separator'
+        },
+        {
+            label: _('menu.file.import.label'),
+            accelerator: 'Ctrl+I',
+            click(item, focusedWindow) {
+                const dialogOpts = {
+                    properties: ['openFile'],
+                    filters: [
+                        {name: 'Docker-Compose-File', extensions: ['yml', 'yaml']}
+                    ]
+                };
+
+                const files = dialog.showOpenDialog(dialogOpts);
+                if(files && files.length === 1) {
+                    focusedWindow.webContents.send('import', files[0]);
                 }
             }
         },

@@ -25,6 +25,10 @@ class App extends React.Component {
                 services: this.props.services
             });
         });
+
+        ipcRenderer.on('import', (event, filename) => {
+            this.props.dispatch(Actions.importComposeFile(filename));
+        });
     }
 
     render() {
