@@ -1,6 +1,7 @@
 # Docker Compose Editor
 
 [![Build Status](https://travis-ci.org/code-arcs/docker-compose-editor.svg?branch=master)](https://travis-ci.org/code-arcs/docker-compose-editor)
+[![dependencies Status](https://david-dm.org/code-arcs/docker-compose-editor/status.svg)](https://david-dm.org/code-arcs/docker-compose-editor)
 
 Editing Docker Compose files may be very frustrating when havin a lot of services bundled together.
 In the name of simplicity, this Docker Compose Editor is implemented.
