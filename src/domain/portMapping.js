@@ -3,15 +3,15 @@ export class PortMapping {
         if (internalPort === undefined && typeof externalPort === 'string') {
             const splittedPorts = externalPort.split(':');
             if (splittedPorts.length === 2) {
-                this._externalPort = String(splittedPorts[0]);
-                this._internalPort = String(splittedPorts[1]);
+                this._externalPort = String(splittedPorts[0] || "");
+                this._internalPort = String(splittedPorts[1] || "");
             } else if (splittedPorts.length === 1) {
                 this._externalPort = "";
-                this._internalPort = String(splittedPorts[0]);
+                this._internalPort = String(splittedPorts[0] || "");
             }
         } else {
-            this._externalPort = String(externalPort);
-            this._internalPort = String(internalPort);
+            this._externalPort = String(externalPort || "");
+            this._internalPort = String(internalPort || "");
         }
 
         const isExternalPortRange = (this.getExternalPort() || "").indexOf('-') !== -1;
