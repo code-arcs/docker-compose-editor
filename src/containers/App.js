@@ -10,8 +10,8 @@ import * as pkg from "../../package.json";
 
 class App extends React.Component {
     componentDidMount() {
-        ipcRenderer.on('open-file', (event, filename) => {
-            this.props.dispatch(Actions.openFile(filename));
+        ipcRenderer.on('open-file', (event, data) => {
+            this.props.dispatch(Actions.openFile(data));
             document.title = pkg.productName;
         });
 
@@ -20,10 +20,10 @@ class App extends React.Component {
         });
 
         ipcRenderer.on('save', () => {
-            ipcRenderer.send('save-data', {
+            ipcRenderer.send('save-data', JSON.stringify({
                 envVars: this.props.envVars,
                 services: this.props.services
-            });
+            }));
         });
 
         ipcRenderer.on('import', (event, filename) => {

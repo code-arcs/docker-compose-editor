@@ -67,4 +67,12 @@ export class Service {
     getEnvironmentVariables() {
         return this._environment;
     }
+
+    static fromJSON(json) {
+        const service = Object.assign(new Service(), json);
+        service._baseImage = BaseImage.fromJSON(service._baseImage);
+        service._environment = service._environment.map(EnvironmentVariable.fromJSON);
+        service._ports = service._ports.map(PortMapping.fromJSON);
+        return service;
+    }
 }

@@ -2,7 +2,7 @@ import lodash from "lodash";
 import * as C from "../constants";
 import ComposeLoader from "../js/compose.loader";
 import {ReducerRegistry} from "./reducerRegistry";
-import {EnvironmentVariable} from "../domain";
+import {EnvironmentVariable, Service} from "../domain";
 import {generateUUID} from "../utils";
 
 const initialState = {
@@ -11,7 +11,8 @@ const initialState = {
         EnvironmentVariable.create("B", 2),
     ],
     services: [],
-    activeService: {}
+    activeService: {},
+    version: '1.0.0'
 };
 
 const reducerRegistry = new ReducerRegistry();
@@ -44,8 +45,14 @@ reducerRegistry.register(C.SHOW_SERVICE_DETAILS, (state, action) => {
 });
 
 reducerRegistry.register(C.OPEN_FILE, (state, action) => {
-    const Compose = ComposeLoader.createFromFile(action.payload);
-    state.services = Compose.getServices();
+    console.log(action.payload);
+
+    const newState = {
+        envVars: action.payload.envVars.map(env => EnvironmentVariable.create(env._key, env._value)),
+        services: action.payload.services.map(service => Service.fromJSON(service))
+    };
+
+    state = Object.assign(state, newState);
     return state;
 });
 

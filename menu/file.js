@@ -3,6 +3,7 @@ const dialog = electron.dialog;
 const _ = require('../i18n');
 const fs = require('fs');
 const path = require('path');
+const Zip = require('node-zip');
 
 module.exports = {
     label: _('menu.file.label'),
@@ -20,7 +21,10 @@ module.exports = {
 
                 const files = dialog.showOpenDialog(dialogOpts);
                 if(files && files.length === 1) {
-                    focusedWindow.webContents.send('open-file', files[0]);
+                    const data = fs.readFileSync(files[0], 'binary');
+                    var zip = new Zip(data, {base64: false, checkCRC32: true});
+                    const file = zip.files['data.json'];
+                    focusedWindow.webContents.send('open-file', JSON.parse(file.asText()));
                 }
             }
         },

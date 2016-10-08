@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Archiver = require('archiver');
+const Zip = require('node-zip');
 const electron = require('electron');
 const ipcMain = electron.ipcMain;
 const dialog = electron.dialog;
@@ -23,17 +23,14 @@ ipcMain.on('save-data', function (event, data) {
         ]
     };
 
-    if(!electron.app.currenProjectFile) {
-        electron.app.currenProjectFile = dialog.showSaveDialog(dialogOpts);
+    if (!electron.app.currentProjectFile) {
+        electron.app.currentProjectFile = dialog.showSaveDialog(dialogOpts);
     }
 
-    if(electron.app.currenProjectFile) {
-        const archive = Archiver('zip');
-        archive.on('error', function (err) {
-            console.log(err);
-        });
-        archive.pipe(fs.createWriteStream(electron.app.currenProjectFile));
-        archive.append(new Buffer(data), {name: 'data.json'});
-        archive.finalize();
+    if (electron.app.currentProjectFile) {
+        const zip = new Zip();
+        zip.file('data.json', data);
+        const zippedData = zip.generate({base64: false, compression: 'DEFLATE'});
+        fs.writeFileSync(electron.app.currentProjectFile, zippedData, 'binary');
     }
 });

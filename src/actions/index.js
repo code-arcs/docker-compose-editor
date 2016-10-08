@@ -14,10 +14,10 @@ export function showServiceDetails(service) {
     }
 }
 
-export function openFile(yamlFile) {
+export function openFile(data) {
     return {
         type: C.OPEN_FILE,
-        payload: yamlFile
+        payload: data
     }
 }
 

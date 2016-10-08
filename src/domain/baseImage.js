@@ -70,4 +70,8 @@ export class BaseImage {
 
         return toString.join('');
     }
+
+    static fromJSON(json) {
+        return Object.assign(new BaseImage(), json);
+    }
 }

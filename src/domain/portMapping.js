@@ -50,4 +50,8 @@ export class PortMapping {
     setInternalPort(port) {
         this._internalPort = port;
     }
+
+    static fromJSON(json) {
+        return Object.assign(new PortMapping(), json);
+    }
 }
