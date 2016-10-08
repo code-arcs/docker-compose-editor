@@ -2,10 +2,14 @@ import lodash from "lodash";
 import * as C from "../constants";
 import ComposeLoader from "../js/compose.loader";
 import {ReducerRegistry} from "./reducerRegistry";
+import {EnvironmentVariable} from "../domain";
 import {generateUUID} from "../utils";
 
 const initialState = {
-    envVars: [],
+    envVars: [
+        EnvironmentVariable.create("A", 1),
+        EnvironmentVariable.create("B", 2),
+    ],
     services: [],
     activeService: {}
 };
@@ -73,15 +77,6 @@ reducerRegistry.register(C.DELETE_ENV_VARIABLE, (state, action) => {
 });
 
 reducerRegistry.register(C.ADD_ENV_VARIABLE, (state, action) => {
-    if (action.payload && action.payload.serviceName) {
-        const service = state.services.find(s => s._name === action.payload.serviceName);
-        service.environment = service.environment || [];
-        service.environment.push({
-            key: 'KEY',
-            value: 'VALUE',
-        });
-    } else {
-        state.envVars.push({});
-    }
+    state.envVars.push(new EnvironmentVariable());
     return state;
 });

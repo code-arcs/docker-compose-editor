@@ -43,28 +43,18 @@ class EnvInputField extends React.Component {
                 minLength: 1
             },
             {
-                name: 'states',
                 source: this.substringMatcher(this.props.envVars),
-                display: 'key',
+                display: (s) => `\$${s.getKey()}`,
                 templates: {
-                    suggestion: (res) => `<div><strong>${res.key}:</strong> ${res.value}</div>`
+                    suggestion: (res) => `<div><strong>\$${res.getKey()}:</strong> ${res.getValue()}</div>`
                 }
             });
     }
 
-    substringMatcher(strs) {
+    substringMatcher(environmentVariables) {
         return function findMatches(q, cb) {
-            const matches = [];
-
-            q = q.replace(/^\$/g, '');
-
-            jQuery.each(strs, function (i, str) {
-                if (JSON.stringify(str).toLowerCase().indexOf(q.toLowerCase()) !== -1) {
-                    matches.push({
-                        key: `\$${str.key}`,
-                        value: str.value
-                    });
-                }
+            const matches = environmentVariables.filter(envVar => {
+                return (JSON.stringify(envVar).toLowerCase().indexOf(q.toLowerCase()) !== -1);
             });
             cb(matches);
         };

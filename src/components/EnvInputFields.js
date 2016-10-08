@@ -5,12 +5,13 @@ import EnvInputField from "./EnvInputField";
 
 class EnvInputFields extends React.Component {
     render() {
-        const environmentVariables = this.props.service.getEnvironmentVariables();
+        const environmentVariables = this.props.service ? this.props.service.getEnvironmentVariables() : this.props.envVars;
         let envInputs;
         if (Array.isArray(environmentVariables) && environmentVariables.length > 0) {
             envInputs = environmentVariables.map((variable, idx) => {
                 return (
                     <EnvInputField key={idx}
+                                   index={idx}
                                    variable={variable}
                                    onChange={this.onChange.bind(this)}/>
                 );
@@ -41,9 +42,20 @@ class EnvInputFields extends React.Component {
     }
 
     addEnv() {
-        const service = this.props.service;
-        service.addEnvironmentVariable();
-        this.props.dispatch(Action.updateService(service));
+        if(this.props.service) {
+            const service = this.props.service;
+            service.addEnvironmentVariable();
+            this.props.dispatch(Action.updateService(service));
+        } else {
+            this.props.dispatch(Action.addEnvVariable());
+        }
     }
 }
-export default connect()(EnvInputFields);
+
+function mapStateToScope(state) {
+    return {
+        envVars: state.app.envVars
+    }
+}
+
+export default connect(mapStateToScope)(EnvInputFields);
