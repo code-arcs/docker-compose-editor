@@ -6,10 +6,7 @@ import {EnvironmentVariable, Service} from "../domain";
 import {generateUUID} from "../utils";
 
 const initialState = {
-    envVars: [
-        EnvironmentVariable.create("A", 1),
-        EnvironmentVariable.create("B", 2),
-    ],
+    envVars: [],
     services: [],
     activeService: {},
     version: '1.0.0'

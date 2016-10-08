@@ -16,7 +16,6 @@ export class EnvironmentVariable {
     }
 
     static fromJSON(json) {
-        console.log(json);
         return Object.assign(new EnvironmentVariable(), json);
     }
 
