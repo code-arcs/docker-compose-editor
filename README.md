@@ -20,6 +20,7 @@ are an important part of this tool!
  * ipc
  * jQuery
  * lodash
+ * node-zip
  * React.js
  * Redux
  * typeahead.js
