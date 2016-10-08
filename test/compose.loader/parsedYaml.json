@@ -90,8 +90,8 @@
         "SPRING_RABBITMQ_PASSWORD": "$SPRING_RABBITMQ_PASSWORD",
         "SPRING_MAIL_HOST": "stekoe.kasserver.com",
         "SPRING_MAIL_PORT": 587,
-        "SPRING_MAIL_USERNAME": "m03a0f82",
-        "SPRING_MAIL_PASSWORD": "ZmmdonhuNCgPTX2c",
+        "SPRING_MAIL_USERNAME": "admin",
+        "SPRING_MAIL_PASSWORD": "secret",
         "BIC_CLOUD_USER_PASSWORD_RESET_EMAIL_FROM": "biccloud@stekoe.de",
         "SPRING_PROFILES_ACTIVE": "postgres"
       }
