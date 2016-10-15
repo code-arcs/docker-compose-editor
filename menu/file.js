@@ -70,11 +70,22 @@ module.exports = {
             type: 'separator'
         },
         {
-            label: _('menu.file.export.label') + '...',
-            accelerator: 'Ctrl+E',
-            click(item, focusedWindow) {
-                focusedWindow.webContents.send('export');
-            }
+            label: _('menu.file.export.label'),
+            submenu: [
+                {
+                    label: _('menu.file.export.compose.label') + '...',
+                    accelerator: 'Ctrl+E',
+                    click(item, focusedWindow) {
+                        focusedWindow.webContents.send('export');
+                    }
+                },
+                {
+                    label: _('menu.file.export.docker-run.label') + '...'
+                },
+                {
+                    label: _('menu.file.export.docker-service.label') + '...'
+                }
+            ]
         },
         {
             type: 'separator'

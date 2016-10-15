@@ -12,7 +12,16 @@
         "label": "Speichern als"
       },
       "export": {
-        "label": "Exportieren"
+        "label": "Exportieren",
+        "compose": {
+          "label": "Als Compose-Datei exportieren..."
+        },
+        "docker-run": {
+          "label": "Als docker run commands exportieren..."
+        },
+        "docker-service": {
+          "label": "Als docker service commands exportieren..."
+        }
       },
       "quit": {
         "label": "Beenden"
