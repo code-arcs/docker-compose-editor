@@ -51,6 +51,10 @@ export class PortMapping {
         this._internalPort = port;
     }
 
+    toString() {
+        return [this.getExternalPort(), this.getInternalPort()].filter(p => p.length > 0).join(':');
+    }
+
     static fromJSON(json) {
         return Object.assign(new PortMapping(), json);
     }
