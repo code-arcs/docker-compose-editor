@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-import {Service, PortMapping} from "../src/domain";
+import {Service, PortMapping} from "../../src/domain";
 
 describe('Service: Port Mapping', function() {
     beforeEach(() => {
@@ -21,13 +21,13 @@ describe('Service: Port Mapping', function() {
 
     it('should set port mapping based on string.', () => {
         this.service.addPortMapping('8080');
-        expect(this.service.getPortMappings()[0].getExternalPort()).to.equal(undefined);
+        expect(this.service.getPortMappings()[0].getExternalPort()).to.equal('');
         expect(this.service.getPortMappings()[0].getInternalPort()).to.equal('8080');
     });
 
     it('should set port mapping based on string with range.', () => {
         this.service.addPortMapping('8080-8090');
-        expect(this.service.getPortMappings()[0].getExternalPort()).to.equal(undefined);
+        expect(this.service.getPortMappings()[0].getExternalPort()).to.equal('');
         expect(this.service.getPortMappings()[0].getInternalPort()).to.equal('8080-8090');
     });
 

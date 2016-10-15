@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-import {Service, RestartPolicy} from "../src/domain";
+import {Service, RestartPolicy} from "../../src/domain";
 
 describe('Service: EnvVars', function() {
     beforeEach(() => {

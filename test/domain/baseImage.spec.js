@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-import {BaseImage} from "../src/domain";
+import {BaseImage} from "../../src/domain";
 
 describe('BaseImage', function() {
     beforeEach(() => {

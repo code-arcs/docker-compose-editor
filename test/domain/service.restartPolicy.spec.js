@@ -1,6 +1,6 @@
 const should = require('chai').should();
 
-import {Service, RestartPolicy} from "../src/domain";
+import {Service, RestartPolicy} from "../../src/domain";
 
 describe('Service: Restart Policy', function() {
     beforeEach(() => {
