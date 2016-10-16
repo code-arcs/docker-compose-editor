@@ -21,16 +21,6 @@ export function openFile(data) {
     }
 }
 
-export function setServiceActive(serviceName, active) {
-    return {
-        type: C.SET_SERVICE_ACTIVE,
-        payload: {
-            serviceName: serviceName,
-            active: active
-        }
-    }
-}
-
 export function updateService(service) {
     return {
         type: C.UPDATE_SERVICE,

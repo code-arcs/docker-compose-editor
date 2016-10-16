@@ -5,19 +5,21 @@ import * as Actions from "../actions";
 
 class ServiceListItem extends React.Component {
     handleChange(event) {
-        this.props.dispatch(Actions.setServiceActive(this.props.service._name, !event.target.checked));
+        const service = this.props.service;
+        service.setActive(event.target.checked);
+        this.props.dispatch(Actions.updateService(service));
     }
 
     render() {
         const clazzName = ["service-list-item"];
-        if (this.props.service._inactive) {
+        if (!this.props.service.isActive()) {
             clazzName.push("inactive")
         }
 
         return (
             <li className={clazzName.join(' ')}>
                 <Link to={"/services/" + this.props.service._id}>{this.props.service._name}</Link>
-                <input checked={!this.props.service._inactive} type="checkbox" onClick={this.handleChange.bind(this)}/>
+                <input checked={this.props.service.isActive()} type="checkbox" onClick={this.handleChange.bind(this)}/>
             </li>
         )
     }

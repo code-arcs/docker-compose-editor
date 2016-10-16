@@ -9,6 +9,7 @@ const initialState = {
     docker: {
         envVars: [],
         services: [],
+        version: '2'
     },
     activeService: {},
 };
@@ -19,11 +20,6 @@ export function appReducer(state = initialState, action) {
     const newState = lodash.cloneDeep(state);
     return reducerRegistry.execute(action.type, newState, action);
 }
-
-reducerRegistry.register(C.SET_SERVICE_ACTIVE, (state, action) => {
-    state.docker.services[action.payload.serviceName]._inactive = action.payload.active;
-    return state;
-});
 
 reducerRegistry.register(C.UPDATE_SERVICE, (state, action) => {
     let service = state.docker.services.find(service => service._id === action.payload._id);

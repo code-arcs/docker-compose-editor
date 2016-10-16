@@ -9,6 +9,7 @@ export class Service {
         this._ports = [];
         this._environment = [];
         this._restart = RestartPolicy.NO;
+        this._active = true;
     }
 
     setName(name) {
@@ -70,6 +71,14 @@ export class Service {
 
     setEnvironmentVariables(envVars) {
         this._environment = envVars;
+    }
+
+    setActive(active) {
+        this._active = active;
+    }
+
+    isActive() {
+        return this._active;
     }
 
     static fromJSON(json) {
