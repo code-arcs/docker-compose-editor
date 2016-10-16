@@ -14,8 +14,8 @@ class StatusBarPanel extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        activeServices: (state.app.services || []).length,
-        globalEnvVars: (state.app.envVars || []).length
+        activeServices: (state.app.docker.services || []).length,
+        globalEnvVars: (state.app.docker.envVars || []).length
     }
 }
 
