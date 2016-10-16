@@ -70,12 +70,14 @@ class EnvInputField extends React.Component {
             environmentVariable.setValue(event.target.value);
         }
 
-        this.props.onChange();
+        if(this.props.onChange) {
+            this.props.onChange();
+        }
     }
 }
 function mapStateToScope(state) {
     return {
-        envVars: state.app.envVars
+        envVars: state.app.docker.envVars
     }
 }
 export default connect(mapStateToScope)(EnvInputField)
