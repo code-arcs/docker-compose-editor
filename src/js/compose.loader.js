@@ -1,5 +1,7 @@
 'use strict';
 import {RestartPolicy} from "../domain/restartPolicy";
+import {EnvironmentVariableHelper} from "../utils/environmentVariable";
+import lodash from "lodash";
 
 const YAML = require('yamljs');
 const fs = require('fs');
@@ -22,7 +24,7 @@ export default class ComposeLoader {
         if (state.version === '2') {
             const services = {};
 
-            state.services
+            lodash.cloneDeep(state.services)
                 .filter(s => s.isActive())
                 .forEach(service => {
                     const ts = {};
@@ -36,15 +38,14 @@ export default class ComposeLoader {
                     }
                     if (service.getEnvironmentVariables().length > 0) {
                         ts.environment = {};
+                        EnvironmentVariableHelper.replaceEnvWithGlobalEnv(service, state.envVars);
                         service.getEnvironmentVariables().forEach(e => {
-                            ts.environment[e.getKey()] = e.getValue()
+                            ts.environment[e.getKey()] = e.getValue();
                         })
                     }
 
                     services[service.getName()] = ts;
                 });
-
-            console.log(services);
 
             return YAML.stringify({
                 version: '2',
