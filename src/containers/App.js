@@ -6,11 +6,8 @@ import StatusBarPanel from "./StatusBarPanel";
 import {IPC} from "../ipc";
 
 class App extends React.Component {
-    componentDidMount() {
-        IPC.register(this.props);
-    }
-
     render() {
+        IPC.register(this.props);
         return (
             <div className="main-panel">
                 <main>
