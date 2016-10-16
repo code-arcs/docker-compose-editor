@@ -1,5 +1,5 @@
 'use strict';
-import lodash from "lodash";
+import {RestartPolicy} from "../domain/restartPolicy";
 
 const YAML = require('yamljs');
 const fs = require('fs');
@@ -20,17 +20,31 @@ export default class ComposeLoader {
 
     static toYaml(state) {
         if (state.version === '2') {
-            const services = lodash.cloneDeep(state.services);
-            for (let service in services) {
-                const service = services[service];
-                if (Array.isArray(service.environment)) {
-                    const environment = {};
-                    service.environment.forEach(env => {
-                        environment[env.key] = env.value;
-                    });
-                    service.environment = environment;
-                }
-            }
+            const services = {};
+
+            state.services
+                .filter(s => s.isActive())
+                .forEach(service => {
+                    const ts = {};
+                    ts.image = service.getBaseImage().toString();
+
+                    if (service.getRestartPolicy() !== RestartPolicy.NO) {
+                        ts.restart = service.getRestartPolicy();
+                    }
+                    if (service.getPortMappings().length > 0) {
+                        ts.ports = service.getPortMappings().map(portMapping => portMapping.toString());
+                    }
+                    if (service.getEnvironmentVariables().length > 0) {
+                        ts.environment = {};
+                        service.getEnvironmentVariables().forEach(e => {
+                            ts.environment[e.getKey()] = e.getValue()
+                        })
+                    }
+
+                    services[service.getName()] = ts;
+                });
+
+            console.log(services);
 
             return YAML.stringify({
                 version: '2',
