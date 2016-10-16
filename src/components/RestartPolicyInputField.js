@@ -9,14 +9,14 @@ class RestartPolicyInputField extends React.Component {
             .filter(name => typeof RestartPolicy[name] === 'string')
             .map((restartPolicyName, idx) => {
                 return (
-                    <option key={idx} value={restartPolicyName}>{RestartPolicy[restartPolicyName]}</option>
+                    <option key={idx}>{RestartPolicy[restartPolicyName]}</option>
                 )
             });
 
         return (
             <div className="form-group">
                 <label htmlFor="">Restart</label>
-                <select className="form-control" value={this.props.service.restart} onChange={this.onChange.bind(this)}>
+                <select className="form-control" value={this.props.service.getRestartPolicy()} onChange={this.onChange.bind(this)}>
                     {policies}
                 </select>
             </div>
@@ -25,6 +25,7 @@ class RestartPolicyInputField extends React.Component {
 
     onChange(event) {
         const service = this.props.service;
+        console.log(service);
         service.setRestartPolicy(event.target.value);
         this.props.dispatch(Actions.updateService(service));
     }
