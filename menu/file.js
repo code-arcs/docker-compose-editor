@@ -59,13 +59,13 @@ module.exports = {
                 focusedWindow.webContents.send('save');
             }
         },
-        {
-            label: _('menu.file.save_as.label') + '...',
-            accelerator: 'Ctrl+Shift+S',
-            click(item, focusedWindow) {
-                focusedWindow.webContents.send('save-as');
-            }
-        },
+        // {
+        //     label: _('menu.file.save_as.label') + '...',
+        //     accelerator: 'Ctrl+Shift+S',
+        //     click(item, focusedWindow) {
+        //         focusedWindow.webContents.send('save-as');
+        //     }
+        // },
         {
             type: 'separator'
         },
@@ -73,20 +73,20 @@ module.exports = {
             label: _('menu.file.export.label'),
             submenu: [
                 {
-                    label: _('menu.file.export.compose.label') + '...',
+                    label: _('menu.file.export.compose.label'),
                     accelerator: 'Ctrl+E',
                     click(item, focusedWindow) {
                         focusedWindow.webContents.send('export');
                     }
                 },
+                // {
+                //     label: _('menu.file.export.docker-run.label'),
+                //     click(item, focusedWindow) {
+                //         focusedWindow.webContents.send('export.docker-run');
+                //     }
+                // },
                 {
-                    label: _('menu.file.export.docker-run.label') + '...',
-                    click(item, focusedWindow) {
-                        focusedWindow.webContents.send('export.docker-run');
-                    }
-                },
-                {
-                    label: _('menu.file.export.docker-service.label') + '...',
+                    label: _('menu.file.export.docker-service.label'),
                     click(item, focusedWindow) {
                         focusedWindow.webContents.send('export.docker-service');
                     }

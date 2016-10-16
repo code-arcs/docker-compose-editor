@@ -4,7 +4,7 @@ const electron = require('electron');
 const ipcMain = electron.ipcMain;
 const dialog = electron.dialog;
 
-ipcMain.on('export-data', function (event, yamlContent) {
+ipcMain.on('export', function (event, yamlContent) {
     const dialogOpts = {
         filters: [
             {name: 'Docker-Compose-File', extensions: ['yml', 'yaml']}
@@ -28,7 +28,7 @@ ipcMain.on('export.docker-service', function (event, data) {
     }
 });
 
-ipcMain.on('save-data', function (event, data) {
+ipcMain.on('save', function (event, data) {
     const dialogOpts = {
         filters: [
             {name: 'DCE-Project', extensions: ['dce']}

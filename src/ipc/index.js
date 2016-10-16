@@ -22,7 +22,7 @@ export class IPC {
 
         ipcRenderer.on('export', () => {
             console.log(props);
-            ipcRenderer.send('export-data', ComposeLoader.toYaml(props.docker));
+            ipcRenderer.send('export', ComposeLoader.toYaml(props.docker));
         });
 
         ipcRenderer.on('export.docker-service', () => {
@@ -35,7 +35,7 @@ export class IPC {
         });
 
         ipcRenderer.on('save', () => {
-            ipcRenderer.send('save-data', JSON.stringify({
+            ipcRenderer.send('save', JSON.stringify({
                 envVars: props.docker.envVars,
                 services: props.docker.services
             }));
