@@ -53,7 +53,7 @@ class GlobalEnvInputFields extends React.Component {
 
 function mapStateToScope(state) {
     return {
-        envVars: state.app.envVars
+        envVars: state.app.docker.envVars
     }
 }
 

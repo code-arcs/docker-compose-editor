@@ -25,7 +25,7 @@ class GlobalEnvVariables extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        envVars: state.app.envVars
+        envVars: state.app.docker.envVars
     }
 }
 export default connect(mapStateToProps)(GlobalEnvVariables)

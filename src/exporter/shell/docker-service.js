@@ -18,6 +18,7 @@ export class ShellDockerServiceExporter {
     generate(mode) {
         this.cmd.push(`docker service create`);
         this.cmd.push(`--name ${this.service.getName()}`);
+
         this._processEnvVars(this.service.getEnvironmentVariables());
         this._processPorts(this.service.getPortMappings());
         this._processRestartPolicy(this.service.getRestartPolicy());

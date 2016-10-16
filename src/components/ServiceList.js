@@ -36,7 +36,7 @@ class ServiceList extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        services: state.app.services
+        services: state.app.docker.services
     };
 }
 export default connect(mapStateToProps)(ServiceList)

@@ -1,6 +1,7 @@
 import React from "react";
+import {connect} from "react-redux";
 
-export default class ContentPanel extends React.Component {
+class ContentPanel extends React.Component {
     render() {
         let sidebar;
         if (this.props.sidebar) {
@@ -21,3 +22,9 @@ export default class ContentPanel extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return state.app;
+
+}
+export default connect(mapStateToProps)(ContentPanel);

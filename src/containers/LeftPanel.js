@@ -9,14 +9,14 @@ class LeftPanel extends React.Component {
                 <div className="left-nav-panel">
                     <ul>
                         <li>
-                            <Link to={"/env"} activeClassName="active">
+                            <Link to="/env" activeClassName="active">
                                 <svg className="icon icon-nav">
                                     <use xlinkHref="#globe"/>
                                 </svg>
                             </Link>
                         </li>
                         <li>
-                            <Link to={"/services"} activeClassName="active">
+                            <Link to="/services" activeClassName="active">
                                 <svg className="icon icon-nav">
                                     <use xlinkHref="#services"/>
                                 </svg>

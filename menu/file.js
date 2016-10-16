@@ -80,10 +80,16 @@ module.exports = {
                     }
                 },
                 {
-                    label: _('menu.file.export.docker-run.label') + '...'
+                    label: _('menu.file.export.docker-run.label') + '...',
+                    click(item, focusedWindow) {
+                        focusedWindow.webContents.send('export.docker-run');
+                    }
                 },
                 {
-                    label: _('menu.file.export.docker-service.label') + '...'
+                    label: _('menu.file.export.docker-service.label') + '...',
+                    click(item, focusedWindow) {
+                        focusedWindow.webContents.send('export.docker-service');
+                    }
                 }
             ]
         },

@@ -2,17 +2,19 @@ import React from "react";
 import {render} from "react-dom";
 import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
-import {Router, Route, hashHistory} from "react-router";
+import {IndexRoute, Router, Route, hashHistory} from "react-router";
 import {syncHistoryWithStore, routerReducer} from "react-router-redux";
-import reducers from "./reducers";
+import {appReducer as app}  from "./reducers";
 import App from "./containers/App";
 import ServiceDetails from "./components/ServiceDetails";
 import GlobalEnvVariables from "./containers/GlobalEnvVariables";
 import ServiceList from "./components/ServiceList";
+import Services from "./containers/Services";
+import Service from "./containers/Service";
 
 const store = createStore(
     combineReducers({
-        app: reducers,
+        app,
         routing: routerReducer
     })
 );
