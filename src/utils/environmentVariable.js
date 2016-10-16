@@ -7,7 +7,7 @@ export class EnvironmentVariableHelper {
         service.getEnvironmentVariables().forEach(e => {
             let value = e.getValue();
             if(typeof value === 'string' && value.indexOf("$") === 0) {
-                const globalEnv = globalEnvs.find(e => e.getKey() === value.substr(1));
+                const globalEnv = (globalEnvs || []).find(e => e.getKey() === value.substr(1));
                 if(globalEnv) {
                     e.setValue(globalEnv.getValue());
                 }

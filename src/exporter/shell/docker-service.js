@@ -1,3 +1,6 @@
+import lodash from "lodash";
+import {EnvironmentVariableHelper} from "../../utils/environmentVariable";
+
 export class ShellDockerServiceExporter {
     /**
      * @param {Service} service
@@ -11,11 +14,13 @@ export class ShellDockerServiceExporter {
      * @param {Service} service
      */
     constructor(service) {
-        this.service = service;
+        this.service = lodash.cloneDeep(service);
         this.cmd = [];
     }
 
     generate(mode) {
+        EnvironmentVariableHelper.replaceEnvWithGlobalEnv(this.service);
+
         this.cmd.push(`docker service create`);
         this.cmd.push(`--name ${this.service.getName()}`);
 

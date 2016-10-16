@@ -16,6 +16,18 @@ ipcMain.on('export-data', function (event, yamlContent) {
     }
 });
 
+ipcMain.on('export.docker-service', function (event, data) {
+    const dialogOpts = {
+        filters: [
+            {name: 'Bash-Script', extensions: ['sh']}
+        ]
+    };
+    const file = dialog.showSaveDialog(dialogOpts);
+    if (file) {
+        fs.writeFileSync(file, data, 'utf8');
+    }
+});
+
 ipcMain.on('save-data', function (event, data) {
     const dialogOpts = {
         filters: [

@@ -2,6 +2,8 @@ import ComposeLoader from "../js/compose.loader";
 import {ipcRenderer} from "electron";
 import * as Actions from "../actions";
 import * as pkg from "../../package.json";
+import {Service} from "../domain/service";
+import {ShellDockerServiceExporter} from "../exporter/shell/docker-service";
 
 export class IPC {
     static register(props) {
@@ -24,13 +26,18 @@ export class IPC {
         });
 
         ipcRenderer.on('export.docker-service', () => {
-
+            const s = (props.docker.services)
+                .filter(s => s.isActive())
+                .map(s => Service.fromJSON(s))
+                .map(s => ShellDockerServiceExporter.getShellCommand(s, true))
+                .join('\n\n');
+            ipcRenderer.send('export.docker-service', s);
         });
 
         ipcRenderer.on('save', () => {
             ipcRenderer.send('save-data', JSON.stringify({
-                envVars: props.envVars,
-                services: props.services
+                envVars: props.docker.envVars,
+                services: props.docker.services
             }));
         });
 
