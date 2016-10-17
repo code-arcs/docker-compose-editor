@@ -8,7 +8,7 @@
     "start": "electron .",
     "test": "mocha",
     "serve": "gulp serve",
-    "release:win": "electron-packager ./dist"
+    "release:win": "electron-packager ./dist --platform=win32"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",

@@ -6,20 +6,21 @@ export class ShellDockerServiceExporter {
      * @param {Service} service
      * @returns {string}
      */
-    static getShellCommand(service, mode) {
-        return new ShellDockerServiceExporter(service).generate(mode);
+    static getShellCommand(service, globalEnvs, mode) {
+        return new ShellDockerServiceExporter(service, globalEnvs).generate(mode);
     }
 
     /**
      * @param {Service} service
      */
-    constructor(service) {
+    constructor(service, globalEnvs) {
         this.service = lodash.cloneDeep(service);
+        this.globalEnvs = lodash.cloneDeep(globalEnvs);
         this.cmd = [];
     }
 
     generate(mode) {
-        EnvironmentVariableHelper.replaceEnvWithGlobalEnv(this.service);
+        EnvironmentVariableHelper.replaceEnvWithGlobalEnv(this.service, this.globalEnvs);
 
         this.cmd.push(`docker service create`);
         this.cmd.push(`--name ${this.service.getName()}`);

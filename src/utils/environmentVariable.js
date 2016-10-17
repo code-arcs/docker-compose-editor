@@ -4,7 +4,7 @@ export class EnvironmentVariableHelper {
      * @param {Array<EnvironmentVariable>} globalEnvs
      */
     static replaceEnvWithGlobalEnv(service, globalEnvs) {
-        service.getEnvironmentVariables().forEach(e => {
+        const envVars = service.getEnvironmentVariables().map(e => {
             let value = e.getValue();
             if(typeof value === 'string' && value.indexOf("$") === 0) {
                 const globalEnv = (globalEnvs || []).find(e => e.getKey() === value.substr(1));
@@ -12,6 +12,8 @@ export class EnvironmentVariableHelper {
                     e.setValue(globalEnv.getValue());
                 }
             }
-        })
+            return e;
+        });
+        service.setEnvironmentVariables(envVars);
     }
 }

@@ -87,6 +87,7 @@ module.exports = {
                 // },
                 {
                     label: _('menu.file.export.docker-service.label'),
+                    accelerator: 'Ctrl+Shift+E',
                     click(item, focusedWindow) {
                         focusedWindow.webContents.send('export.docker-service');
                     }

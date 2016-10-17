@@ -29,7 +29,7 @@ export class IPC {
             const s = (props.docker.services)
                 .filter(s => s.isActive())
                 .map(s => Service.fromJSON(s))
-                .map(s => ShellDockerServiceExporter.getShellCommand(s, true))
+                .map(s => ShellDockerServiceExporter.getShellCommand(s, props.docker.envVars, true))
                 .join('\n\n');
             ipcRenderer.send('export.docker-service', s);
         });
