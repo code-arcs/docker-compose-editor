@@ -47,6 +47,7 @@ export class ShellDockerServiceExporter {
      */
     _processEnvVars(envVars) {
         envVars.forEach(ev => {
+            ev = this.service.getEnvironmentVariable(ev.getKey(), true);
             this.cmd.push(`--env ${ev.getKey()}=${ev.getValue()}`)
         });
     }

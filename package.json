@@ -6,7 +6,7 @@
   "author": "info@codearcs.de",
   "scripts": {
     "start": "electron .",
-    "test": "mocha",
+    "test": "mocha --recursive",
     "serve": "gulp serve",
     "release:win": "electron-packager ./dist --platform=win32"
   },

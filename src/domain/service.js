@@ -69,6 +69,27 @@ export class Service {
         return this._environment;
     }
 
+    /**
+     * @param key
+     * @param resolveValue If true, all variables in value are resolved.
+     * @returns {EnvironmentVariable}
+     */
+    getEnvironmentVariable(key, resolveValue) {
+        const environmentVariable = this._environment.find(env => env.getKey() === key);
+        if (environmentVariable && resolveValue === true) {
+            let value = environmentVariable.getValue();
+            if (typeof value === 'string') {
+                value = value.replace(/\$([A-Z_]*)/gi, match => {
+                    const envVar = this.getEnvironmentVariable(match.substr(1), true);
+                    return envVar ? envVar.getValue() : match;
+                });
+
+                return EnvironmentVariable.create(key, value);
+            }
+        }
+        return environmentVariable;
+    }
+
     setEnvironmentVariables(envVars) {
         this._environment = envVars;
     }

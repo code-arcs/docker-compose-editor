@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 import {Service, RestartPolicy} from "../../../src/domain";
 import {ShellDockerServiceExporter} from "../../../src/exporter/shell/docker-service";
 
-describe.only('ShellDockerServiceExporter', function() {
+describe('ShellDockerServiceExporter', function() {
     it('should convert image.', () => {
         const service = new Service("database");
         service.setBaseImage("mysql:5.6");
@@ -21,6 +21,17 @@ describe.only('ShellDockerServiceExporter', function() {
         const shellCommand = ShellDockerServiceExporter.getShellCommand(service);
 
         expect(shellCommand).to.equal('docker service create --name database --env NODE_ENV=development mysql:5.6');
+    });
+
+    it('should resolve env values.', () => {
+        const service = new Service("database");
+        service.setBaseImage("mysql:5.6");
+        service.addEnvironmentVariable("A", "aaa");
+        service.addEnvironmentVariable("B", "$A bbb");
+
+        const shellCommand = ShellDockerServiceExporter.getShellCommand(service);
+
+        expect(shellCommand).to.equal('docker service create --name database --env A=aaa --env B=aaa bbb mysql:5.6');
     });
 
     it('should convert ports.', () => {
@@ -56,7 +67,7 @@ describe.only('ShellDockerServiceExporter', function() {
         service.setBaseImage("mysql:5.6");
         service.addEnvironmentVariable("NODE_ENV", "development");
 
-        const shellCommand = ShellDockerServiceExporter.getShellCommand(service, true);
+        const shellCommand = ShellDockerServiceExporter.getShellCommand(service, [], true);
 
         const actual = 'docker service create\n    --name database\n    --env NODE_ENV=development\n    mysql:5.6';
         expect(shellCommand).to.equal(actual);
