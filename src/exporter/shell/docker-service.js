@@ -20,16 +20,16 @@ export class ShellDockerServiceExporter {
     }
 
     generate(mode) {
-        EnvironmentVariableHelper.replaceEnvWithGlobalEnv(this.service, this.globalEnvs);
+        const service = EnvironmentVariableHelper.replaceEnvWithGlobalEnv(this.service, this.globalEnvs);
 
         this.cmd.push(`docker service create`);
-        this.cmd.push(`--name ${this.service.getName()}`);
+        this.cmd.push(`--name ${service.getName()}`);
 
-        this._processEnvVars(this.service.getEnvironmentVariables());
-        this._processPorts(this.service.getPortMappings());
-        this._processRestartPolicy(this.service.getRestartPolicy());
+        this._processEnvVars(service.getEnvironmentVariables());
+        this._processPorts(service.getPortMappings());
+        this._processRestartPolicy(service.getRestartPolicy());
 
-        this._processBaseImage(this.service.getBaseImage());
+        this._processBaseImage(service.getBaseImage());
 
         return this.cmd.join(mode === true ? '\n    ' : ' ');
     }
@@ -47,7 +47,6 @@ export class ShellDockerServiceExporter {
      */
     _processEnvVars(envVars) {
         envVars.forEach(ev => {
-            ev = this.service.getEnvironmentVariable(ev.getKey(), true);
             this.cmd.push(`--env ${ev.getKey()}=${ev.getValue()}`)
         });
     }

@@ -2,8 +2,9 @@ const expect = require('chai').expect;
 
 import {Service, RestartPolicy} from "../../../src/domain";
 import {ShellDockerServiceExporter} from "../../../src/exporter/shell/docker-service";
+import {EnvironmentVariable} from "../../../src/domain/environmentVariable";
 
-describe('ShellDockerServiceExporter', function() {
+describe('ShellDockerServiceExporter', function () {
     it('should convert image.', () => {
         const service = new Service("database");
         service.setBaseImage("mysql:5.6");
@@ -26,12 +27,15 @@ describe('ShellDockerServiceExporter', function() {
     it('should resolve env values.', () => {
         const service = new Service("database");
         service.setBaseImage("mysql:5.6");
-        service.addEnvironmentVariable("A", "aaa");
-        service.addEnvironmentVariable("B", "$A bbb");
+        service.addEnvironmentVariable("SPRING_RABBITMQ_HOST", "$IP");
 
-        const shellCommand = ShellDockerServiceExporter.getShellCommand(service);
+        const globalEnvVars = [
+            EnvironmentVariable.create("IP", "127.0.0.1")
+        ];
 
-        expect(shellCommand).to.equal('docker service create --name database --env A=aaa --env B=aaa bbb mysql:5.6');
+        const shellCommand = ShellDockerServiceExporter.getShellCommand(service, globalEnvVars);
+
+        expect(shellCommand).to.equal('docker service create --name database --env SPRING_RABBITMQ_HOST=127.0.0.1 mysql:5.6');
     });
 
     it('should convert ports.', () => {

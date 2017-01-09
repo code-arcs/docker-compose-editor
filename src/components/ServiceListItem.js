@@ -19,7 +19,7 @@ class ServiceListItem extends React.Component {
         return (
             <li className={clazzName.join(' ')}>
                 <Link to={"/services/" + this.props.service._id}>{this.props.service._name}</Link>
-                <input checked={this.props.service.isActive()} type="checkbox" onClick={this.handleChange.bind(this)}/>
+                <input checked={this.props.service.isActive()} type="checkbox" onChange={this.handleChange.bind(this)}/>
             </li>
         )
     }

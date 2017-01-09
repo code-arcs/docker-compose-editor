@@ -78,8 +78,8 @@ export class Service {
         const environmentVariable = this._environment.find(env => env.getKey() === key);
         if (environmentVariable && resolveValue === true) {
             let value = environmentVariable.getValue();
-            if (typeof value === 'string') {
-                value = value.replace(/\$([A-Z_]*)/gi, match => {
+            if (typeof value === 'string' && value.indexOf("$") !== -1) {
+                value = value.replace(/\$([A-Za-z_]*)/gi, match => {
                     const envVar = this.getEnvironmentVariable(match.substr(1), true);
                     return envVar ? envVar.getValue() : match;
                 });
