@@ -55,10 +55,7 @@ reducerRegistry.register(C.UPDATE_ENV_VARIABLE, (state, action) => {
             value: action.payload.value,
         };
     } else {
-        state.docker.envVars[action.payload.idx] = {
-            key: action.payload.key,
-            value: action.payload.value,
-        };
+        state.docker.envVars[action.payload.idx] = action.payload.variable;
     }
     return state;
 });

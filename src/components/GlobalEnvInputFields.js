@@ -13,6 +13,7 @@ class GlobalEnvInputFields extends React.Component {
                     <EnvInputField key={idx}
                                    index={idx}
                                    variable={variable}
+                                   onChange={this.onChange.bind(this)}
                                    onDelete={this.onDelete.bind(this)}/>
                 );
             });
@@ -39,6 +40,13 @@ class GlobalEnvInputFields extends React.Component {
 
     onDelete(idx) {
         this.props.dispatch(Action.deleteEnvVariable(idx));
+    }
+
+    onChange(idx, variable) {
+        this.props.dispatch(Action.updateEnvVariable({
+            idx: idx,
+            variable
+        }));
     }
 
     addEnv() {

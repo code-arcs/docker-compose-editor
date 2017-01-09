@@ -36,13 +36,15 @@ class EnvInputField extends React.Component {
     }
 
     componentDidMount() {
-        jQuery(`#env_${this.props.index}`).typeahead({
-                hint: false,
-                highlight: true,
-                minLength: 1
-            },
+        const opts = {
+            hint: false,
+            highlight: true,
+            minLength: 1,
+        };
+        jQuery(`#env_${this.props.index}`).typeahead(opts,
             {
                 source: this.substringMatcher(this.props.envVars),
+                limit: 15,
                 display: (s) => `\$${s.getKey()}`,
                 templates: {
                     suggestion: (res) => `<div><strong>\$${res.getKey()}:</strong> ${res.getValue()}</div>`
@@ -50,11 +52,21 @@ class EnvInputField extends React.Component {
             });
     }
 
+    /**
+     * @param   {Array<EnvironmentVariable>} environmentVariables
+     * @returns {findMatches}
+     */
     substringMatcher(environmentVariables) {
         return function findMatches(q, cb) {
-            const matches = environmentVariables.filter(envVar => {
-                return (JSON.stringify(envVar).toLowerCase().indexOf(q.toLowerCase()) !== -1);
-            });
+            const matches = environmentVariables
+                .sort((a, b) => a.getKey() > b.getKey() ? 1 : -1)
+                .filter(envVar => {
+                    const key = "$" + envVar.getKey().toLowerCase();
+                    const value = envVar.getValue().toLowerCase();
+                    const keyMatched = key.indexOf(q.toLowerCase()) !== -1;
+                    const valueMatched = value.indexOf(q.toLowerCase()) !== -1;
+                    return keyMatched || valueMatched;
+                });
             cb(matches);
         };
     }
@@ -70,7 +82,7 @@ class EnvInputField extends React.Component {
         }
 
         if (this.props.onChange) {
-            this.props.onChange();
+            this.props.onChange(this.props.index, environmentVariable);
         }
     }
 }
