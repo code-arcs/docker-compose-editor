@@ -73,7 +73,7 @@ describe('ShellDockerServiceExporter', function () {
 
         const shellCommand = ShellDockerServiceExporter.getShellCommand(service, [], true);
 
-        const actual = 'docker service create\n    --name database\n    --env NODE_ENV=development\n    mysql:5.6';
+        const actual = 'docker service create \\\n    --name database \\\n    --env NODE_ENV=development \\\n    mysql:5.6';
         expect(shellCommand).to.equal(actual);
     });
 });
