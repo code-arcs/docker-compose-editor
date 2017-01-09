@@ -31,7 +31,7 @@ export class ShellDockerServiceExporter {
 
         this._processBaseImage(service.getBaseImage());
 
-        return this.cmd.join(mode === true ? '\n    ' : ' ');
+        return this.cmd.join(mode === true ? ' \\\n    ' : ' ');
     }
 
     /**
