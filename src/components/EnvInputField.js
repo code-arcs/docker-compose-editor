@@ -61,10 +61,12 @@ class EnvInputField extends React.Component {
             const matches = environmentVariables
                 .sort((a, b) => a.getKey() > b.getKey() ? 1 : -1)
                 .filter(envVar => {
-                    const key = "$" + envVar.getKey().toLowerCase();
-                    const value = envVar.getValue().toLowerCase();
-                    const keyMatched = key.indexOf(q.toLowerCase()) !== -1;
-                    const valueMatched = value.indexOf(q.toLowerCase()) !== -1;
+                    let key = "$" + envVar.getKey();
+                    let keyMatched = key.indexOf(q.toLowerCase()) !== -1;
+
+                    let value = envVar.getValue();
+                    let valueMatched = (typeof value === "string") ? value.toLowerCase().indexOf(q.toLowerCase()) !== -1 : false;
+
                     return keyMatched || valueMatched;
                 });
             cb(matches);
