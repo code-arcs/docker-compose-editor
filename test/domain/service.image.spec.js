@@ -1,8 +1,8 @@
 const expect = require('chai').expect;
 
-import {Service, RestartPolicy} from "../../src/domain";
+import {Service} from "../../src/domain";
 
-describe('Service: Image', function() {
+describe('Service: Image', function () {
     beforeEach(() => {
         this.service = new Service();
     });

@@ -29,7 +29,7 @@ export class EnvironmentVariableHelper {
         globalEnvs = lodash.cloneDeep(globalEnvs);
         // FIXME: This is ugly as fuck... We continue replacing until no "$" is found in the values....
         // Don't kill me please! We need to build a tree here which is used to resolve vars.
-        while((globalEnvs || []).map(e => e.getValue()).some(v => v.indexOf("$") !== -1)) {
+        while ((globalEnvs || []).map(e => e.getValue()).some(v => v.indexOf("$") !== -1)) {
             globalEnvs = (globalEnvs || []).map(EnvironmentVariableHelper._replaceVarsCallback(globalEnvs));
         }
         return globalEnvs;

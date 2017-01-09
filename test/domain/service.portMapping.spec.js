@@ -1,8 +1,8 @@
 const expect = require('chai').expect;
 
-import {Service, PortMapping} from "../../src/domain";
+import {Service} from "../../src/domain";
 
-describe('Service: Port Mapping', function() {
+describe('Service: Port Mapping', function () {
     beforeEach(() => {
         this.service = new Service();
     });

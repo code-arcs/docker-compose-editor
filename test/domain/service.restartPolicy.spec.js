@@ -2,7 +2,7 @@ const should = require('chai').should();
 
 import {Service, RestartPolicy} from "../../src/domain";
 
-describe('Service: Restart Policy', function() {
+describe('Service: Restart Policy', function () {
     beforeEach(() => {
         this.service = new Service();
     });

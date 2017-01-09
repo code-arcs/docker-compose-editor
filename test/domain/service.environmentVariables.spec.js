@@ -1,8 +1,8 @@
 const expect = require('chai').expect;
 
-import {Service, RestartPolicy} from "../../src/domain";
+import {Service} from "../../src/domain";
 
-describe('Service: EnvVars', function() {
+describe('Service: EnvVars', function () {
     beforeEach(() => {
         this.service = new Service();
     });

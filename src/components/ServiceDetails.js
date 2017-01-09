@@ -22,7 +22,7 @@ class ServiceDetails extends React.Component {
         return (
             <div>
                 {/*<div style={style}>*/}
-                    {/*<pre>{JSON.stringify(this.service, null, 2)}</pre>*/}
+                {/*<pre>{JSON.stringify(this.service, null, 2)}</pre>*/}
                 {/*</div>*/}
                 <ServiceNameInputField service={this.service}/>
                 <ImageInputField service={this.service}/>

@@ -16,7 +16,8 @@ class RestartPolicyInputField extends React.Component {
         return (
             <div className="form-group">
                 <label htmlFor="">Restart</label>
-                <select className="form-control" value={this.props.service.getRestartPolicy()} onChange={this.onChange.bind(this)}>
+                <select className="form-control" value={this.props.service.getRestartPolicy()}
+                        onChange={this.onChange.bind(this)}>
                     {policies}
                 </select>
             </div>

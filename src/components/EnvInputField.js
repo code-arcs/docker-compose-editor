@@ -1,6 +1,5 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
-import * as Actions from "../actions";
 
 const jQuery = require('jquery');
 const typeahead = require('../../node_modules/typeahead.js/dist/typeahead.jquery');
@@ -70,7 +69,7 @@ class EnvInputField extends React.Component {
             environmentVariable.setValue(event.target.value);
         }
 
-        if(this.props.onChange) {
+        if (this.props.onChange) {
             this.props.onChange();
         }
     }

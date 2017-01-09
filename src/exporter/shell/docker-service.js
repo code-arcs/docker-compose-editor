@@ -66,7 +66,7 @@ export class ShellDockerServiceExporter {
      * @private
      */
     _processRestartPolicy(restartPolicy) {
-        switch(restartPolicy) {
+        switch (restartPolicy) {
             case 'on-failure':
                 this.cmd.push(`--restart-condition on-failure`);
                 break;
